@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/eduar/Documents/PROYECTOS/Repositorios/Airport/src/airport/Passenger.java</file>
-            <file>file:/C:/Users/eduar/Documents/PROYECTOS/Repositorios/Airport/src/airport/Location.java</file>
-            <file>file:/C:/Users/eduar/Documents/PROYECTOS/Repositorios/Airport/src/airport/Plane.java</file>
-            <file>file:/C:/Users/eduar/Documents/PROYECTOS/Repositorios/Airport/src/airport/Flight.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/view/PanelRound.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/model/storage/AirportStorage.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/model/Location.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/model/Passenger.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/model/Flight.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/model/Plane.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/view/AirportFrame.java</file>
         </group>
     </open-files>
 </project-private>

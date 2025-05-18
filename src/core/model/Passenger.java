@@ -111,4 +111,23 @@ public class Passenger {
         return flights.size();
     }
     
+    @Override
+public Passenger clone() {
+    Passenger copy = new Passenger(
+        this.id,
+        this.firstname,
+        this.lastname,
+        this.birthDate,
+        this.countryPhoneCode,
+        this.phone,
+        this.country
+    );
+
+    // Clonamos la lista de vuelos (referencias, no copias profundas)
+    for (Flight f : this.flights) {
+           copy.addFlight(f); // si Flight también implementa clone()
+    }
+
+    return copy;
+}
 }

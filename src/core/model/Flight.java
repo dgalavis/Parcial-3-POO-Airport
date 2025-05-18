@@ -115,4 +115,46 @@ public class Flight {
         return passengers.size();
     }
     
+    /**
+     *
+     * @return
+     */
+    @Override
+    public Flight clone() {
+        Flight copy;
+
+        // Verificamos si tiene escala
+        if (scaleLocation != null) {
+            copy = new Flight(
+                this.id,
+                this.plane, // se puede usar plane.clone() si quieres copia más segura
+                this.departureLocation,
+                this.scaleLocation,
+                this.arrivalLocation,
+                this.departureDate,
+                this.hoursDurationArrival,
+                this.minutesDurationArrival,
+                this.hoursDurationScale,
+                this.minutesDurationScale
+            );
+        } else {
+            copy = new Flight(
+                this.id,
+                this.plane,
+                this.departureLocation,
+                this.arrivalLocation,
+                this.departureDate,
+                this.hoursDurationArrival,
+                this.minutesDurationArrival
+            );
+        }
+
+        // Clonamos la lista de pasajeros (referencias, no deep copy)
+        for (Passenger p : this.passengers) {
+            copy.addPassenger(p); // puedes usar p.clone() si quieres copia completa
+        }
+
+        return copy;
+    }
+
 }

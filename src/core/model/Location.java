@@ -50,4 +50,18 @@ public class Location {
         return airportLongitude;
     }
     
+        @Override
+    public Location clone() {
+        return new Location(
+            this.airportId,
+            this.airportName,
+            this.airportCity,
+            this.airportCountry,
+            this.airportLatitude,
+            this.airportLongitude
+        );
+    }
+
+    
+    
 }

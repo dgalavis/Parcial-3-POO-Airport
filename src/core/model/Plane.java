@@ -61,4 +61,22 @@ public class Plane {
         return flights.size();
     }
     
+    @Override
+    public Plane clone() {
+        Plane copy = new Plane(
+            this.id,
+            this.brand,
+            this.model,
+            this.maxCapacity,
+            this.airline
+        );
+
+        // Copiar las referencias de vuelos (no deep clone para evitar ciclos)
+        for (Flight f : this.flights) {
+            copy.addFlight(f); // O usa f.clone() si sabes que es seguro
+        }
+
+        return copy;
+    }
+
 }
