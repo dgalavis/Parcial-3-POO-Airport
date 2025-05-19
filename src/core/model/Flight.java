@@ -4,15 +4,14 @@
  */
 package core.model;
 
+import core.model.utils.CloneableModel;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author edangulo
  */
-public class Flight {
+public class Flight implements CloneableModel<Flight> {
     
     private final String id;
     private ArrayList<Passenger> passengers;
@@ -56,6 +55,10 @@ public class Flight {
         this.plane.addFlight(this);
     }
 
+    public void addPassenger(Passenger passenger) {
+        this.passengers.add(passenger);
+    }
+     
     public String getId() {
         return id;
     }
@@ -100,11 +103,6 @@ public class Flight {
         this.departureDate = departureDate;
     }    
 
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    
     /**
      *
      * @return
@@ -141,7 +139,7 @@ public class Flight {
 
         // Clonamos la lista de pasajeros (referencias, no deep copy)
         for (Passenger p : this.passengers) {
-            copy.getPassengers().add(p); // puedes usar p.clone() si quieres copia completa
+            copy.addPassenger(p); // puedes usar p.clone() si quieres copia completa
         }
 
         return copy;

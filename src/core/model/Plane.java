@@ -4,7 +4,6 @@
  */
 package core.model;
 
-import core.model.Flight;
 import core.model.utils.CloneableModel;
 import java.util.ArrayList;
 
