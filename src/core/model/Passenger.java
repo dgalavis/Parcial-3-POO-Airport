@@ -5,6 +5,7 @@
 package core.model;
 
 import core.model.Flight;
+import core.model.utils.CloneableModel;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author edangulo
  */
-public class Passenger {
+public class Passenger implements CloneableModel<Passenger> {
     
     private final long id;
     private String firstname;

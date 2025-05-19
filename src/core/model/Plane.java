@@ -5,13 +5,14 @@
 package core.model;
 
 import core.model.Flight;
+import core.model.utils.CloneableModel;
 import java.util.ArrayList;
 
 /**
  *
  * @author edangulo
  */
-public class Plane {
+public class Plane implements CloneableModel<Plane> {
     
     private final String id;
     private String brand;
