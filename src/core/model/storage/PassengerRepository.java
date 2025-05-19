@@ -22,7 +22,7 @@ public class PassengerRepository {
     // MÉTODOS PARA PASAJEROS
     // =====================================
     
-    public boolean addPassanger(Passenger passenger) {
+    public boolean addPassenger(Passenger passenger) {
         for (Passenger p : this.passengers) {
             if (p.getId() == passenger.getId()) {
                 return false;
@@ -69,5 +69,11 @@ public class PassengerRepository {
     return sortedList;
     }
     
+    public Passenger findById(long id) {
+    for (Passenger p : passengers) {
+        if (p.getId() == id) return p;
+    }
+    return null;
+    }
 
 }

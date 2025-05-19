@@ -67,4 +67,13 @@ public class PlaneRepository {
     return sortedList;
     }
     
+     public Plane findById(String id) {
+        for (Plane p : planes) {
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
 }

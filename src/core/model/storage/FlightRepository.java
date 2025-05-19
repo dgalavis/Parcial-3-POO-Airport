@@ -65,5 +65,12 @@ public class FlightRepository {
 
         return sortedList;
     }
+    public Flight findById(String id) {
+    for (Flight f : flights) {
+        if (f.getId().equals(id)) return f;
+    }
+    return null;
+}
+
         
 }

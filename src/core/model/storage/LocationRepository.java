@@ -64,4 +64,10 @@ public class LocationRepository {
 
         return sortedList;
     }
+    public Location findById(String id) {
+    for (Location l : locations) {
+        if (l.getAirportId().equals(id)) return l;
+    }
+    return null;
+}
 }
