@@ -12,7 +12,32 @@ import core.models.Location;
  */
 public class Response {
 
-    public Response(boolean par, String la_localización_no_puede_ser_nula, Location clone) { //corregir
+    
+    private String message;
+    private int status;
+    private Object object;
+
+    public Response(String message, int status) {
+        this.message = message;
+        this.status = status;
+    }
+    
+    public Response(String message, int status, Object object) {
+        this.message = message;
+        this.status = status;
+        this.object = object;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public Object getObject() {
+        return object;
     }
     
 }
