@@ -69,11 +69,14 @@ public class PassengerRepository {
     return sortedList;
     }
     
-    public Passenger findById(long id) {
-    for (Passenger p : passengers) {
-        if (p.getId() == id) return p;
+   public boolean updatePassenger(Passenger updated) {
+    for (int i = 0; i < passengers.size(); i++) {
+        if (passengers.get(i).getId() == updated.getId()) {
+            passengers.set(i, updated);
+            return true;
+        }
     }
-    return null;
-    }
+    return false;
+}
 
 }

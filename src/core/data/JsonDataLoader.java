@@ -123,13 +123,13 @@ public class JsonDataLoader {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject f = array.getJSONObject(i);
 
-                Plane plane = storage.getPlaneRepo().findById(f.getString("plane"));
-                Location dep = storage.getLocationRepository().findById(f.getString("departureLocation"));
-                Location arr = storage.getLocationRepository().findById(f.getString("arrivalLocation"));
+                Plane plane = storage.getPlaneRepo().getPlane(f.getString("plane"));
+                Location dep = storage.getLocationRepository().getLocation(f.getString("departureLocation"));
+                Location arr = storage.getLocationRepository().getLocation(f.getString("arrivalLocation"));
                 Location scale = null;
 
                 if (!f.isNull("scaleLocation")) {
-                    scale = storage.getLocationRepository().findById(f.getString("scaleLocation"));
+                    scale = storage.getLocationRepository().getLocation(f.getString("scaleLocation"));
                 }
 
                 Flight flight;
