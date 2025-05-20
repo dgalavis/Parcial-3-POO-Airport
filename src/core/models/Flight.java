@@ -102,7 +102,11 @@ public class Flight implements CloneableModel<Flight> {
     public void setDepartureDate(LocalDateTime departureDate) {
         this.departureDate = departureDate;
     }    
-
+    
+    public int getNumPassengers() {
+        return passengers.size();
+    }
+    
     /**
      *
      * @return

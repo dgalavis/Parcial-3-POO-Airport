@@ -11,8 +11,9 @@ import java.time.LocalDateTime;
  *
  * @author lhaur
  */
-public class FlightTimeCalculator {
+public class FlightCalculations {
     public LocalDateTime calculateArrivalDate(Flight flight) {
         return flight.getDepartureDate().plusHours(flight.getHoursDurationScale()).plusMinutes(flight.getMinutesDurationScale()).plusHours(flight.getHoursDurationArrival()).plusMinutes(flight.getMinutesDurationArrival());
     }
+   
 }
