@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package core.model;
+package core.models;
 
-import core.model.interfaces.CloneableModel;
+import core.models.interfaces.CloneableModel;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 
 /**

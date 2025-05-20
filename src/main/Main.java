@@ -5,9 +5,9 @@
 package main;
 
 import core.data.JsonDataLoader;
-import core.model.Flight;
-import core.model.Plane;
-import core.model.storage.AirportStorage;
+import core.models.Flight;
+import core.models.Plane;
+import core.models.storage.AirportStorage;
 
 /**
  *

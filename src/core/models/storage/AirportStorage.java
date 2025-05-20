@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package core.model.storage;
+package core.models.storage;
 
-import core.model.Flight;
-import core.model.Location;
-import core.model.Passenger;
-import core.model.Plane;
+import core.models.Flight;
+import core.models.Location;
+import core.models.Passenger;
+import core.models.Plane;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

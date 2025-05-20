@@ -4,10 +4,10 @@
  */
 package core.view;
 
-import core.model.Flight;
-import core.model.Location;
-import core.model.Passenger;
-import core.model.Plane;
+import core.models.Flight;
+import core.models.Location;
+import core.models.Passenger;
+import core.models.Plane;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
 import java.time.LocalDate;

@@ -4,11 +4,11 @@
  */
 package core.data;
 
-import core.model.Flight;
-import core.model.Location;
-import core.model.Passenger;
-import core.model.Plane;
-import core.model.storage.AirportStorage;
+import core.models.Flight;
+import core.models.Location;
+import core.models.Passenger;
+import core.models.Plane;
+import core.models.storage.AirportStorage;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
