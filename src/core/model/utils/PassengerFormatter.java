@@ -4,10 +4,18 @@
  */
 package core.model.utils;
 
+import core.model.Passenger;
+
 /**
  *
  * @author galav
  */
 public class PassengerFormatter {
-    
+     public static String getFullname(Passenger p) {
+        return p.getFirstname() + " " + p.getLastname();
+    }
+
+    public static String generateFullPhone(Passenger p) {
+        return "+" + p.getCountryPhoneCode() + " " + p.getPhone();
+    }
 }

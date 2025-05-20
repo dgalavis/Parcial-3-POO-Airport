@@ -57,9 +57,7 @@ public class Plane implements CloneableModel<Plane> {
         return flights;
     }
     
-    public int getNumFlights() {
-        return flights.size();
-    }
+  
     
     @Override
     public Plane clone() {
