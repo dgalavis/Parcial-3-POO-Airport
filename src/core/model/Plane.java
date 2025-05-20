@@ -4,7 +4,7 @@
  */
 package core.model;
 
-import core.model.utils.CloneableModel;
+import core.model.interfaces.CloneableModel;
 import java.util.ArrayList;
 
 /**
