@@ -1619,53 +1619,42 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createLocationButtomActionPerformed
 
     private void FlightCreateButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FlightCreateButtomActionPerformed
-         // TODO add your handling code here:
-        String id = idTextField.getText();
-        String planeId = planeSelect.getItemAt(planeSelect.getSelectedIndex());
-        String departureLocationId = DepartureLocationSelect.getItemAt(DepartureLocationSelect.getSelectedIndex());
-        String arrivalLocationId = ArrivalLocationSelect.getItemAt(ArrivalLocationSelect.getSelectedIndex());
-        String scaleLocationId = ScaleLocationSelect.getItemAt(ScaleLocationSelect.getSelectedIndex());
-        int year = Integer.parseInt(añoTextField.getText());
-        int month = Integer.parseInt(MONTH1.getItemAt(MONTH1.getSelectedIndex()));
-        int day = Integer.parseInt(DAY1.getItemAt(DAY1.getSelectedIndex()));
-        int hour = Integer.parseInt(MONTH2.getItemAt(MONTH2.getSelectedIndex()));
-        int minutes = Integer.parseInt(DAY2.getItemAt(DAY2.getSelectedIndex()));
-        int hoursDurationsArrival = Integer.parseInt(MONTH3.getItemAt(MONTH3.getSelectedIndex()));
-        int minutesDurationsArrival = Integer.parseInt(DAY3.getItemAt(DAY3.getSelectedIndex()));
-        int hoursDurationsScale = Integer.parseInt(MONTH4.getItemAt(MONTH4.getSelectedIndex()));
-        int minutesDurationsScale = Integer.parseInt(DAY4.getItemAt(DAY4.getSelectedIndex()));
+         String id = idTextField.getText();
+String planeId = planeSelect.getItemAt(planeSelect.getSelectedIndex());
+String departureLocationId = DepartureLocationSelect.getItemAt(DepartureLocationSelect.getSelectedIndex());
+String arrivalLocationId = ArrivalLocationSelect.getItemAt(ArrivalLocationSelect.getSelectedIndex());
+String scaleLocationId = ScaleLocationSelect.getItemAt(ScaleLocationSelect.getSelectedIndex());
 
-        // Formatear fecha y hora como Strings
-        String departureDateStr = String.format("%04d-%02d-%02d", year, month, day);
-        String departureTimeStr = String.format("%02d:%02d", hour, minutes);
-        
-        // === Convertir enteros a string ===
-        String hoursArrivalStr = String.valueOf(hoursDurationsArrival);
-        String minutesArrivalStr = String.valueOf(minutesDurationsArrival);
-        String hoursScaleStr = String.valueOf(hoursDurationsScale);
-        String minutesScaleStr = String.valueOf(minutesDurationsScale);
+String year = añoTextField.getText();
+String month = MONTH1.getItemAt(MONTH1.getSelectedIndex());
+String day = DAY1.getItemAt(DAY1.getSelectedIndex());
+String hour = MONTH2.getItemAt(MONTH2.getSelectedIndex());
+String minutes = DAY2.getItemAt(DAY2.getSelectedIndex());
+String hoursArrival = MONTH3.getItemAt(MONTH3.getSelectedIndex());
+String minutesArrival = DAY3.getItemAt(DAY3.getSelectedIndex());
+String hoursScale = MONTH4.getItemAt(MONTH4.getSelectedIndex());
+String minutesScale = DAY4.getItemAt(DAY4.getSelectedIndex());
 
-       // === Crear controlador ===
-        FlightController controller = new FlightController(
-            this.flightRepo,
-            this.locationRepo,
-            this.planeRepo    );
+// === Formar fecha y hora como Strings
+String departureDateStr = String.format("%s-%s-%s", year, month, day);
+String departureTimeStr = String.format("%s:%s", hour, minutes);
 
-    // === Validar y crear vuelo ===
-    Response response = controller.createFlight(
-            id,
-            departureLocationId,
-            arrivalLocationId,
-            departureDateStr,
-            departureTimeStr,
-            hoursArrivalStr,
-            minutesArrivalStr,
-            planeId,
-            scaleLocationId,
-            hoursScaleStr,
-            minutesScaleStr
-    );
-    
+// === Crear controlador y pasar strings directamente ===
+FlightController controller = new FlightController(flightRepo, locationRepo, planeRepo);
+
+Response response = controller.createFlight(
+    id,
+    departureLocationId,
+    arrivalLocationId,
+    departureDateStr,
+    departureTimeStr,
+    hoursArrival,
+    minutesArrival,
+    planeId,
+    scaleLocationId,
+    hoursScale,
+    minutesScale
+);
     if (response.getStatus() >= 500) {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
     } else if (response.getStatus() >= 400) {
