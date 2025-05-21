@@ -35,7 +35,7 @@ public class JsonDataLoader {
     private void loadLocations()  {
         try {
             // Ruta absoluta o relativa al archivo JSON
-            FileReader reader = new FileReader("C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/json/locations.json");
+            FileReader reader = new FileReader("json/locations.json");
 
             // Leer el archivo y parsear como JSON
             JSONArray array = new JSONArray(new JSONTokener(reader));
@@ -68,7 +68,7 @@ public class JsonDataLoader {
      //@SuppressWarnings("empty-statement")
    private void loadPlanes() {
     try {
-        FileReader reader = new FileReader("C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/json/planes.json");
+        FileReader reader = new FileReader("json/planes.json");
         JSONArray array = new JSONArray(new JSONTokener(reader));
 
         for (int i = 0; i < array.length(); i++) {
@@ -92,7 +92,7 @@ public class JsonDataLoader {
 
  private void loadPassengers() {
     try {
-        FileReader reader = new FileReader("C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/json/passengers.json");
+        FileReader reader = new FileReader("json/passengers.json");
         JSONArray array = new JSONArray(new JSONTokener(reader));
 
         for (int i = 0; i < array.length(); i++) {
@@ -117,7 +117,7 @@ public class JsonDataLoader {
 
     private void loadFlights() {
         try {
-            FileReader reader = new FileReader("C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/json/flights.json");
+            FileReader reader = new FileReader("json/flights.json");
             JSONArray array = new JSONArray(new JSONTokener(reader));
 
             for (int i = 0; i < array.length(); i++) {

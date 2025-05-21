@@ -1672,7 +1672,7 @@ public class AirportFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Success " + response.getStatus(), JOptionPane.INFORMATION_MESSAGE);
-        // Limpiar campos después del éxito
+        
         idTextField.setText("");   // ID del vuelo
         añoTextField.setText("");   // Año
         planeSelect.setSelectedIndex(0);
