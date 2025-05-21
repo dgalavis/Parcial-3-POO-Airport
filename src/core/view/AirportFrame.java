@@ -9,13 +9,14 @@ import core.models.Location;
 import core.models.Passenger;
 import core.models.Plane;
 import com.formdev.flatlaf.FlatDarkLaf;
+import core.controllers.LocationController;
 import core.controllers.PassengerController;
 import core.controllers.PlaneController;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.models.flightservice.FlightDelay;
 import core.models.flightservice.FlightCalculations;
-import core.models.storage.AirportStorage;
+import core.models.storage.LocationRepository;
 import core.models.utils.PassengerCalculations;
 import core.models.utils.PassengerFormatter;
 import core.models.utils.PlaneCalculations;
@@ -41,8 +42,12 @@ public class AirportFrame extends javax.swing.JFrame {
     private ArrayList<Plane> planes;
     private ArrayList<Location> locations;
     private ArrayList<Flight> flights;
+    private LocationController locationController;
     FlightCalculations calculator = new FlightCalculations();
     PlaneCalculations planeCalculator = new PlaneCalculations();
+    
+
+    
     FlightDelay delayFlight = new FlightDelay();
 
     public AirportFrame() {
@@ -61,6 +66,7 @@ public class AirportFrame extends javax.swing.JFrame {
         this.generateHours();
         this.generateMinutes();
         this.blockPanels();
+        
     }
 
     private void blockPanels() {
@@ -1550,14 +1556,31 @@ public class AirportFrame extends javax.swing.JFrame {
         String name = jTextField14.getText();
         String city = jTextField15.getText();
         String country = jTextField16.getText();
-        double latitude = Double.parseDouble(jTextField17.getText());
-        double longitude = Double.parseDouble(jTextField18.getText());
+        String latitude = jTextField17.getText();
+        String longitude = jTextField18.getText();
+        
+        // Inicializar controlador local (NO en el constructor)
+        LocationRepository locationRepository = new LocationRepository();
+        LocationController locationController = new LocationController(locationRepository);
 
-        this.locations.add(new Location(id, name, city, country, latitude, longitude));
+        
+        Response response = locationController.createLocation(id, name, city, country, latitude, longitude);
 
-        this.jComboBox2.addItem(id);
-        this.jComboBox3.addItem(id);
-        this.jComboBox4.addItem(id);
+        // Mostrar mensaje al usuario
+        JOptionPane.showMessageDialog(null, response.getMessage());
+
+        if (response.getStatus() == Status.CREATED) {
+            jTextField13.setText("");
+            jTextField14.setText("");
+            jTextField15.setText("");
+            jTextField16.setText("");
+            jTextField17.setText("");
+            jTextField18.setText("");
+
+            jComboBox2.addItem(id);
+            jComboBox3.addItem(id);
+            jComboBox4.addItem(id);
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
