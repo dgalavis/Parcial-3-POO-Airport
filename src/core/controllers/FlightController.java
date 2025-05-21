@@ -27,18 +27,51 @@ public class FlightController {
         this.planeRepo = planeRepo;
     }
 
-    public Response createFlight(String flightId, String originId, String destinationId,
-                                 String dateStr, String timeStr, String limitStr, String planeId) {
-
+    public Response createFlight(
+        String id,
+        String departureLocationId,
+        String arrivalLocationId,
+        String departureDateStr,
+        String departureTimeStr,
+        String hoursArrivalStr,
+        String minutesArrivalStr,
+        String planeId,
+        String scaleLocationId,
+        String hoursScaleStr,
+        String minutesScaleStr
+    ) {
+        // Validar datos de entrada
         Response validation = FlightValidator.parseAndValidate(
-                flightId, originId, destinationId, dateStr, timeStr, limitStr, planeId,
-                flightRepo, locationRepo, planeRepo, false
+            id,
+            departureLocationId,
+            arrivalLocationId,
+            departureDateStr,
+            departureTimeStr,
+            hoursArrivalStr,
+            minutesArrivalStr,
+            planeId,
+            scaleLocationId,
+            hoursScaleStr,
+            minutesScaleStr,
+            flightRepo,
+            locationRepo,
+            planeRepo,
+            false // No es actualización, es creación
         );
 
-        if (validation.getStatus() != Status.OK) return validation;
+        if (validation.getStatus() != Status.OK) {
+            return validation;
+        }
 
+        // Obtener vuelo validado y listo
         Flight flight = (Flight) validation.getObject();
-        flightRepo.addFlight(flight);
-        return new Response("Vuelo registrado exitosamente.", Status.CREATED, flight);
+
+        // Agregar al repositorio
+        boolean added = flightRepo.addFlight(flight);
+        if (!added) {
+            return new Response("No se pudo registrar el vuelo.", Status.INTERNAL_SERVER_ERROR);
+        }
+
+        return new Response("Vuelo registrado exitosamente.", Status.CREATED, flight.clone());
     }
 }
