@@ -40,7 +40,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private ArrayList<Plane> planes;
     private ArrayList<Location> locations;
     private ArrayList<Flight> flights;
-    PassengerController controller = new PassengerController(AirportStorage.getInstance().getPassengerRepo());
     FlightCalculations calculator = new FlightCalculations();
     PlaneCalculations planeCalculator = new PlaneCalculations();
     FlightDelay delayFlight = new FlightDelay();
@@ -76,7 +75,7 @@ public class AirportFrame extends javax.swing.JFrame {
         for (int i = 1; i < 13; i++) {
             MONTH.addItem("" + i);
             MONTH1.addItem("" + i);
-            MONTH5.addItem("" + i);
+            MONTHUpdate.addItem("" + i);
         }
     }
 
@@ -84,7 +83,7 @@ public class AirportFrame extends javax.swing.JFrame {
         for (int i = 1; i < 32; i++) {
             DAY.addItem("" + i);
             DAY1.addItem("" + i);
-            DAY5.addItem("" + i);
+            DAYupdate.addItem("" + i);
         }
     }
 
@@ -130,20 +129,20 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        PhoneCodeRegistrationTextField = new javax.swing.JTextField();
+        IdRegistrationTextField = new javax.swing.JTextField();
+        YearRegistrationTextField = new javax.swing.JTextField();
+        countryRegistrationTextField = new javax.swing.JTextField();
+        PhoneRegistrationTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        LastNameRegistrationTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         MONTH = new javax.swing.JComboBox<>();
-        jTextField7 = new javax.swing.JTextField();
+        FirstNameRegistrationTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         DAY = new javax.swing.JComboBox<>();
-        jButton8 = new javax.swing.JButton();
+        RegisterPassengerButtom = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
@@ -202,23 +201,23 @@ public class AirportFrame extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        IdUpdateTextField = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
+        FirstNameUpdateTextField = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
+        LastNameUpdateTextField = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
-        MONTH5 = new javax.swing.JComboBox<>();
-        DAY5 = new javax.swing.JComboBox<>();
-        jTextField25 = new javax.swing.JTextField();
+        YearUpdateTextField = new javax.swing.JTextField();
+        MONTHUpdate = new javax.swing.JComboBox<>();
+        DAYupdate = new javax.swing.JComboBox<>();
+        PhoneUpdateTextField = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        PhoneCodeUpdateTextField = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        CountryUpdateTextField = new javax.swing.JTextField();
+        UpdatePassengerButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField28 = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
@@ -360,25 +359,30 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel6.setText("+");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 20, -1));
 
-        jTextField1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 50, -1));
+        PhoneCodeRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jPanel2.add(PhoneCodeRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 50, -1));
 
-        jTextField2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        IdRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        IdRegistrationTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                IdRegistrationTextFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, -1));
+        jPanel2.add(IdRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, -1));
 
-        jTextField3.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, -1));
+        YearRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        YearRegistrationTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearRegistrationTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(YearRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, -1));
 
-        jTextField4.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 130, -1));
+        countryRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jPanel2.add(countryRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 130, -1));
 
-        jTextField5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 130, -1));
+        PhoneRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jPanel2.add(PhoneRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 130, -1));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel7.setText("Phone:");
@@ -388,8 +392,8 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel8.setText("-");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 30, -1));
 
-        jTextField6.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 130, -1));
+        LastNameRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jPanel2.add(LastNameRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel9.setText("-");
@@ -399,8 +403,13 @@ public class AirportFrame extends javax.swing.JFrame {
         MONTH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month" }));
         jPanel2.add(MONTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
 
-        jTextField7.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 130, -1));
+        FirstNameRegistrationTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        FirstNameRegistrationTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstNameRegistrationTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(FirstNameRegistrationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 130, -1));
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel10.setText("-");
@@ -410,14 +419,14 @@ public class AirportFrame extends javax.swing.JFrame {
         DAY.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day" }));
         jPanel2.add(DAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
 
-        jButton8.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton8.setText("Register");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        RegisterPassengerButtom.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        RegisterPassengerButtom.setText("Register");
+        RegisterPassengerButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                RegisterPassengerButtomActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, -1, -1));
+        jPanel2.add(RegisterPassengerButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, -1, -1));
 
         jTabbedPane1.addTab("Passenger registration", jPanel2);
 
@@ -815,42 +824,47 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel36.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel36.setText("ID:");
 
-        jTextField20.setEditable(false);
-        jTextField20.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTextField20.setEnabled(false);
-        jTextField20.addActionListener(new java.awt.event.ActionListener() {
+        IdUpdateTextField.setEditable(false);
+        IdUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        IdUpdateTextField.setEnabled(false);
+        IdUpdateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField20ActionPerformed(evt);
+                IdUpdateTextFieldActionPerformed(evt);
             }
         });
 
         jLabel37.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel37.setText("First Name:");
 
-        jTextField22.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        FirstNameUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
         jLabel38.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel38.setText("Last Name:");
 
-        jTextField23.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        LastNameUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
         jLabel39.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel39.setText("Birthdate:");
 
-        jTextField24.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        YearUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        YearUpdateTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearUpdateTextFieldActionPerformed(evt);
+            }
+        });
 
-        MONTH5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        MONTH5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month" }));
+        MONTHUpdate.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        MONTHUpdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month" }));
 
-        DAY5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        DAY5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day" }));
+        DAYupdate.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        DAYupdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day" }));
 
-        jTextField25.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        PhoneUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
         jLabel40.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel40.setText("-");
 
-        jTextField26.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        PhoneCodeUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
         jLabel41.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel41.setText("+");
@@ -861,13 +875,13 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel43.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel43.setText("Country:");
 
-        jTextField27.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        CountryUpdateTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        UpdatePassengerButton.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        UpdatePassengerButton.setText("Update");
+        UpdatePassengerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UpdatePassengerButtonActionPerformed(evt);
             }
         });
 
@@ -883,40 +897,40 @@ public class AirportFrame extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel36)
                                 .addGap(108, 108, 108)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(IdUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel37)
                                 .addGap(41, 41, 41)
-                                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(FirstNameUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel38)
                                 .addGap(43, 43, 43)
-                                .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(LastNameUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel39)
                                 .addGap(55, 55, 55)
-                                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(YearUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(MONTH5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MONTHUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(DAY5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(DAYupdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel42)
                                 .addGap(56, 56, 56)
                                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PhoneCodeUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PhoneUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel43)
                                 .addGap(63, 63, 63)
-                                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(CountryUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(507, 507, 507)
-                        .addComponent(jButton1)))
+                        .addComponent(UpdatePassengerButton)))
                 .addContainerGap(598, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -925,34 +939,34 @@ public class AirportFrame extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel36)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IdUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel37)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FirstNameUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel38)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LastNameUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel39)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MONTH5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DAY5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(YearUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MONTHUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DAYupdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel42)
                     .addComponent(jLabel41)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PhoneCodeUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PhoneUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel43)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CountryUpdateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(UpdatePassengerButton)
                 .addGap(113, 113, 113))
         );
 
@@ -1458,42 +1472,48 @@ public class AirportFrame extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(11, true);
     }//GEN-LAST:event_userActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-     try {
-        long id = Long.parseLong(jTextField2.getText());
-        String firstname = jTextField7.getText();
-        String lastname = jTextField6.getText();
-        int year = Integer.parseInt(jTextField3.getText());
-        int month = Integer.parseInt(MONTH.getItemAt(MONTH.getSelectedIndex()));
-        int day = Integer.parseInt(DAY.getItemAt(DAY.getSelectedIndex()));
-        int phoneCode = Integer.parseInt(jTextField1.getText());
-        long phone = Long.parseLong(jTextField5.getText());
-        String country = jTextField4.getText();
+    private void RegisterPassengerButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterPassengerButtomActionPerformed
+    // 1. Obtener los campos como String (sin validar ni parsear)
+    // Obtener los datos como String (sin validarlos ni parsearlos)
+    String id = IdRegistrationTextField.getText();
+    String firstname = FirstNameRegistrationTextField.getText();
+    String lastname = LastNameRegistrationTextField.getText();
+    String year = YearRegistrationTextField.getText();
+    String month = MONTH.getSelectedItem().toString();
+    String day = DAY.getSelectedItem().toString();
+    String phoneCode = PhoneCodeRegistrationTextField.getText();
+    String phone = PhoneRegistrationTextField.getText();
+    String country = countryRegistrationTextField.getText();
 
-        LocalDate birthDate = LocalDate.of(year, month, day);
+    // 2. Construir fecha como string (formato YYYY-MM-DD)
+    String birthDate = year + "-" + month + "-" + day;
 
-        Passenger newPassenger = new Passenger(id, firstname, lastname, birthDate, phoneCode, phone, country);
+    // 3. Llamar al controlador
+    Response response = PassengerController.registerPassenger(
+        id, firstname, lastname, birthDate, phoneCode, phone, country
+    );
 
-        Response response = controller.registerPassenger(newPassenger);
+    // 4. Mostrar mensaje al usuario usando JOptionPane según código de estado
+    if (response.getStatus() >= 500) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
+    } else if (response.getStatus() >= 400) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Success " + response.getStatus(), JOptionPane.INFORMATION_MESSAGE);
 
-        JOptionPane.showMessageDialog(this, response.getMessage());
-         if (response.getStatus() == Status.CREATED) {
-            // Limpiar campos directamente aquí
-            jTextField2.setText("");
-            jTextField7.setText("");
-            jTextField6.setText("");
-            jTextField3.setText("");
-            MONTH.setSelectedIndex(0);
-            DAY.setSelectedIndex(0);
-            jTextField1.setText("");
-            jTextField5.setText("");
-            jTextField4.setText("");
-        }
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al registrar el pasajero: " + e.getMessage());
+        // 5. Si fue exitoso, limpiar los campos y actualizar combo
+        IdRegistrationTextField.setText("");
+        FirstNameRegistrationTextField.setText("");
+        LastNameRegistrationTextField.setText("");
+        YearRegistrationTextField.setText(""); // año
+        MONTH.setSelectedIndex(0);
+        DAY.setSelectedIndex(0);
+        PhoneCodeRegistrationTextField.setText("");
+        PhoneRegistrationTextField.setText("");
+        countryRegistrationTextField.setText("");
+        userSelect.addItem(id);
     }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_RegisterPassengerButtomActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -1574,47 +1594,45 @@ public class AirportFrame extends javax.swing.JFrame {
         this.jComboBox5.addItem(id);
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-        long id = Long.parseLong(jTextField20.getText());
-        String firstname = jTextField22.getText();
-        String lastname = jTextField23.getText();
-        int year = Integer.parseInt(jTextField24.getText());
-        int month = Integer.parseInt(MONTH5.getItemAt(MONTH5.getSelectedIndex()));
-        int day = Integer.parseInt(DAY5.getItemAt(DAY5.getSelectedIndex()));
-        int phoneCode = Integer.parseInt(jTextField26.getText());
-        long phone = Long.parseLong(jTextField25.getText());
-        String country = jTextField27.getText();
+    private void UpdatePassengerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatePassengerButtonActionPerformed
+        // 1. Obtener los datos como String (sin validarlos ni parsearlos)
+    String id = IdUpdateTextField.getText().trim();
+    String firstname = FirstNameUpdateTextField.getText().trim();
+    String lastname = LastNameUpdateTextField.getText().trim();
+    String year = YearUpdateTextField.getText().trim(); // Año como texto
+    String month = MONTHUpdate.getSelectedItem().toString(); // Combo box
+    String day = DAYupdate.getSelectedItem().toString();     // Combo box
+    String phoneCode = PhoneCodeUpdateTextField.getText().trim();
+    String phone = PhoneUpdateTextField.getText().trim();
+    String country = CountryUpdateTextField.getText().trim();
 
-        LocalDate birthDate = LocalDate.of(year, month, day);
+    // 2. Construir fecha como string (formato YYYY-MM-DD)
+    String birthDate = String.format("%s-%02d-%02d", year, Integer.parseInt(month), Integer.parseInt(day));
 
-        Passenger updatedPassenger = new Passenger(id, firstname, lastname, birthDate, phoneCode, phone, country);
 
-        Response response = controller.updatePassenger(updatedPassenger);
+    // 3. Llamar al controlador
+    Response response = PassengerController.updatePassenger(
+        id, firstname, lastname, birthDate, phoneCode, phone, country
+    );
 
-        JOptionPane.showMessageDialog(this, response.getMessage());
-
-       if (response.getStatus() == Status.OK) {
-            // Limpiar campos directamente aquí
-            jTextField20.setText("");
-            jTextField22.setText("");
-            jTextField23.setText("");
-            jTextField24.setText("");
-            MONTH5.setSelectedIndex(0);
-            DAY5.setSelectedIndex(0);
-            jTextField26.setText("");
-            jTextField25.setText("");
-            jTextField27.setText("");
+    // 4. Mostrar mensaje según el resultado
+    if (response.getStatus() >= 500) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
+    } else if (response.getStatus() >= 400) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+         IdUpdateTextField.setText("");
+        FirstNameUpdateTextField.setText("");
+        LastNameUpdateTextField.setText("");
+        YearUpdateTextField.setText("");
+        MONTHUpdate.setSelectedIndex(0);
+        DAYupdate.setSelectedIndex(0);
+        PhoneCodeUpdateTextField.setText("");
+        PhoneUpdateTextField.setText("");
+        CountryUpdateTextField.setText("");
         }
-       else {
-            JOptionPane.showMessageDialog(this, "Error " + response.getStatus() + ": " + response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
-        }
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar el pasajero: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_UpdatePassengerButtonActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
@@ -1719,24 +1737,36 @@ public class AirportFrame extends javax.swing.JFrame {
         try {
             String id = userSelect.getSelectedItem().toString();
             if (! id.equals(userSelect.getItemAt(0))) {
-                jTextField20.setText(id);
+                IdUpdateTextField.setText(id);
                 jTextField28.setText(id);
             }
             else{
-                jTextField20.setText("");
+                IdUpdateTextField.setText("");
                 jTextField28.setText("");
             }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_userSelectActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void IdRegistrationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdRegistrationTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_IdRegistrationTextFieldActionPerformed
 
-    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+    private void IdUpdateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdUpdateTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField20ActionPerformed
+    }//GEN-LAST:event_IdUpdateTextFieldActionPerformed
+
+    private void FirstNameRegistrationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameRegistrationTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstNameRegistrationTextFieldActionPerformed
+
+    private void YearRegistrationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearRegistrationTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YearRegistrationTextFieldActionPerformed
+
+    private void YearUpdateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearUpdateTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YearUpdateTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1758,20 +1788,35 @@ public class AirportFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CountryUpdateTextField;
     private javax.swing.JComboBox<String> DAY;
     private javax.swing.JComboBox<String> DAY1;
     private javax.swing.JComboBox<String> DAY2;
     private javax.swing.JComboBox<String> DAY3;
     private javax.swing.JComboBox<String> DAY4;
-    private javax.swing.JComboBox<String> DAY5;
+    private javax.swing.JComboBox<String> DAYupdate;
+    private javax.swing.JTextField FirstNameRegistrationTextField;
+    private javax.swing.JTextField FirstNameUpdateTextField;
+    private javax.swing.JTextField IdRegistrationTextField;
+    private javax.swing.JTextField IdUpdateTextField;
+    private javax.swing.JTextField LastNameRegistrationTextField;
+    private javax.swing.JTextField LastNameUpdateTextField;
     private javax.swing.JComboBox<String> MONTH;
     private javax.swing.JComboBox<String> MONTH1;
     private javax.swing.JComboBox<String> MONTH2;
     private javax.swing.JComboBox<String> MONTH3;
     private javax.swing.JComboBox<String> MONTH4;
-    private javax.swing.JComboBox<String> MONTH5;
+    private javax.swing.JComboBox<String> MONTHUpdate;
+    private javax.swing.JTextField PhoneCodeRegistrationTextField;
+    private javax.swing.JTextField PhoneCodeUpdateTextField;
+    private javax.swing.JTextField PhoneRegistrationTextField;
+    private javax.swing.JTextField PhoneUpdateTextField;
+    private javax.swing.JButton RegisterPassengerButtom;
+    private javax.swing.JButton UpdatePassengerButton;
+    private javax.swing.JTextField YearRegistrationTextField;
+    private javax.swing.JTextField YearUpdateTextField;
     private javax.swing.JRadioButton administrator;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField countryRegistrationTextField;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -1782,7 +1827,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -1864,7 +1908,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1875,21 +1918,8 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private core.view.PanelRound panelRound1;
