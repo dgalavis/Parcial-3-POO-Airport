@@ -66,6 +66,10 @@ public class AirportFrame extends javax.swing.JFrame {
 
     public AirportFrame() {
         initComponents();
+        // ✅ Inicializar repos
+        this.flightRepo = AirportStorage.getInstance().getFlightRepository();
+        this.planeRepo = AirportStorage.getInstance().getPlaneRepo();
+        this.locationRepo = AirportStorage.getInstance().getLocationRepository();
         
         this.passengers = new ArrayList<>();
         this.planes = new ArrayList<>();
@@ -1528,7 +1532,7 @@ public class AirportFrame extends javax.swing.JFrame {
     String country = countryRegistrationTextField.getText();
 
     // 2. Construir fecha como string (formato YYYY-MM-DD)
-    String birthDate = String.format("%s-%02d-%02d", year, Integer.parseInt(month), Integer.parseInt(day));
+    String birthDate = year + "-" + month + "-" + day;
 
     // 3. Llamar al controlador
     Response response = PassengerController.registerPassenger(
@@ -1692,7 +1696,8 @@ Response response = controller.createFlight(
     String country = CountryUpdateTextField.getText().trim();
 
     // 2. Construir fecha como string (formato YYYY-MM-DD)
-    String birthDate = String.format("%s-%02d-%02d", year, Integer.parseInt(month), Integer.parseInt(day));
+    // Construir fecha
+            String birthDate = year + "-" + month + "-" + day;
 
 
     // 3. Llamar al controlador

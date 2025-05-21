@@ -13,6 +13,7 @@ import core.models.storage.FlightRepository;
 import core.models.storage.LocationRepository;
 import core.models.storage.PlaneRepository;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.time.format.DateTimeParseException;
 
@@ -64,19 +65,21 @@ public class FlightValidator {
         if (plane == null) return new Response("El avión no existe.", Status.BAD_REQUEST);
 
         // === Validar fecha y hora ===
-        if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
-            return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
-        }
+if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
+    return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
+}
 
-        LocalDateTime departureDateTime;
-        try {
-            departureDateTime = LocalDateTime.parse(departureDateStr + "T" + departureTimeStr);
-            if (departureDateTime.isBefore(LocalDateTime.now())) {
-                return new Response("La fecha de salida debe ser futura o actual.", Status.BAD_REQUEST);
-            }
-        } catch (DateTimeParseException e) {
-            return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm.", Status.BAD_REQUEST);
-        }
+LocalDateTime departureDateTime;
+try {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m");
+    departureDateTime = LocalDateTime.parse(departureDateStr + "T" + departureTimeStr, formatter);
+    
+    if (departureDateTime.isBefore(LocalDateTime.now())) {
+        return new Response("La fecha de salida debe ser futura o actual.", Status.BAD_REQUEST);
+    }
+} catch (DateTimeParseException e) {
+    return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm.", Status.BAD_REQUEST);
+}
 
         // === Validar duración llegada ===
         int hoursArrival, minutesArrival;

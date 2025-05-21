@@ -9,6 +9,7 @@ import core.controllers.utils.Status;
 import core.models.Passenger;
 import core.models.storage.PassengerRepository;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -62,7 +63,8 @@ import java.time.format.DateTimeParseException;
         }
 
         try {
-            birthDate = LocalDate.parse(birthStr);
+           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            birthDate = LocalDate.parse(birthStr, formatter);
         } catch (DateTimeParseException e) {
             return new Response("La fecha de nacimiento es inválida. Formato esperado: YYYY-MM-DD", Status.BAD_REQUEST);
         }
