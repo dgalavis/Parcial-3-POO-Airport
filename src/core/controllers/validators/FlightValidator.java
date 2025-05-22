@@ -64,22 +64,22 @@ public class FlightValidator {
         Plane plane = planeRepo.getPlane(planeId);
         if (plane == null) return new Response("El avión no existe.", Status.BAD_REQUEST);
 
-        // === Validar fecha y hora ===
-if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
-    return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
-}
+                // === Validar fecha y hora ===
+        if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
+            return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
+        }
 
-LocalDateTime departureDateTime;
-try {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m");
-    departureDateTime = LocalDateTime.parse(departureDateStr + "T" + departureTimeStr, formatter);
-    
-    if (departureDateTime.isBefore(LocalDateTime.now())) {
-        return new Response("La fecha de salida debe ser futura o actual.", Status.BAD_REQUEST);
-    }
-} catch (DateTimeParseException e) {
-    return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm.", Status.BAD_REQUEST);
-}
+        LocalDateTime departureDateTime;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d'T'H:m");
+            departureDateTime = LocalDateTime.parse(departureDateStr + "T" + departureTimeStr, formatter);
+
+            if (departureDateTime.isBefore(LocalDateTime.now())) {
+                return new Response("La fecha de salida debe ser futura o actual.", Status.BAD_REQUEST);
+            }
+        } catch (DateTimeParseException e) {
+            return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm.", Status.BAD_REQUEST);
+        }
 
         // === Validar duración llegada ===
         int hoursArrival, minutesArrival;
@@ -156,4 +156,42 @@ try {
     private static boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
+    
+    
+    //Delay Validator 
+   public static Response validateDelay(String flightId, String hoursStr, String minutesStr, FlightRepository repo) {
+    if (isNullOrEmpty(flightId)) {
+        return new Response("El ID del vuelo no puede estar vacío.", Status.BAD_REQUEST);
+    }
+
+    Flight flight = repo.getFlight(flightId); // devuelve el real (NO clone)
+    if (flight == null) {
+        return new Response("El vuelo no existe.", Status.NOT_FOUND);
+    }
+
+    int hours, minutes;
+    try {
+        hours = Integer.parseInt(hoursStr);
+        minutes = Integer.parseInt(minutesStr);
+
+        if (hours < 0 || minutes < 0 || minutes > 59) {
+            return new Response("Horas o minutos inválidos.", Status.BAD_REQUEST);
+        }
+
+        if (hours == 0 && minutes == 0) {
+            return new Response("El retraso no puede ser cero.", Status.BAD_REQUEST);
+        }
+
+    } catch (NumberFormatException e) {
+        return new Response("Las horas y minutos deben ser numéricos.", Status.BAD_REQUEST);
+    }
+
+    // 💥 Se modifica directamente el vuelo real (como en Passenger)
+    flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
+
+    return new Response("Vuelo retrasado correctamente.", Status.OK, flight); // devuelves el modificado
+}
+
+
+
 }

@@ -1756,34 +1756,33 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        //delay boton
-        String flightId = idFlight.getItemAt(idFlight.getSelectedIndex());
-        int hours = Integer.parseInt(hoursDelay.getItemAt(hoursDelay.getSelectedIndex()));
-        int minutes = Integer.parseInt(minutesDelay.getItemAt(minutesDelay.getSelectedIndex()));
+        // Obtener datos del formulario
+    String flightId = idFlight.getItemAt(idFlight.getSelectedIndex());
+    String hoursStr = hoursDelay.getItemAt(hoursDelay.getSelectedIndex());
+    String minutesStr = minutesDelay.getItemAt(minutesDelay.getSelectedIndex());
+
+    // Crear el controlador
+    FlightController controller = new FlightController(flightRepo, locationRepo, planeRepo);
+
+    // Ejecutar la acción
+    Response response = controller.delayFlight(flightId, hoursStr, minutesStr);
+
+    // Mostrar mensaje con el esquema que ya manejas
+    if (response.getStatus() >= 500) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
+    } else if (response.getStatus() >= 400) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
         
-        FlightController controller = new FlightController(flightRepo, locationRepo, planeRepo);
-        Response response = controller.delayFlight(flightId, hours, minutes);
 
-        if (response.getStatus() == Status.OK) {
-            JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            FlightTableList.updateFlightsList((DefaultTableModel) showFlightsJTable.getModel());
-
-            // Imprimir para verificar que se actualizó
-    System.out.println("Tabla actualizada después de retrasar el vuelo " + flightId);
-
-    
-    // Forzar refresco visual
-    showFlightsJTable.revalidate();
-    showFlightsJTable.repaint();
-            ComboLoader.cargarFlight(idFlight);
-            idFlight.setSelectedIndex(0);
-            hoursDelay.setSelectedIndex(0);
-            minutesDelay.setSelectedIndex(0);
-        } else {
-            JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
-        }
-
+        // Resetear campos del formulario
+        ComboLoader.cargarFlight(idFlight);
+        idFlight.setSelectedIndex(0);
+        hoursDelay.setSelectedIndex(0);
+        minutesDelay.setSelectedIndex(0);
+    }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -76,24 +76,19 @@ public class FlightController {
         return new Response("Vuelo registrado exitosamente.", Status.CREATED, flight.clone());
     }
     
-    public static Response delayFlight(String flightId, int delayHours, int delayMinutes) {
-        FlightRepository flightRepo = AirportStorage.getInstance().getFlightRepository();
+    
+    
+    public Response delayFlight(String flightId, String hoursStr, String minutesStr) {
+    Response validation = FlightValidator.validateDelay(flightId, hoursStr, minutesStr, flightRepo);
 
-        if (flightId == null || flightId.isBlank()) {
-            return new Response("ID del vuelo vacío.", Status.BAD_REQUEST);
-        }
-
-        Flight flight = flightRepo.getFlight(flightId);
-        if (flight == null) {
-            return new Response("El vuelo no existe.", Status.NOT_FOUND);
-        }
-
-        if (delayHours < 0 || delayMinutes < 0) {
-            return new Response("Las horas y minutos deben ser positivos.", Status.BAD_REQUEST);
-        }
-
-        flight.setDepartureDate(flight.getDepartureDate().plusHours(delayHours).plusMinutes(delayMinutes));
-
-        return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
+    if (validation.getStatus() != Status.OK) {
+        return validation;
     }
+
+    Flight updated = (Flight) validation.getObject();
+
+    return new Response("Vuelo retrasado correctamente.", Status.OK, updated.clone());
+}
+
+    
 }
