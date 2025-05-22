@@ -107,6 +107,11 @@ public class Flight implements CloneableModel<Flight> {
         return passengers.size();
     }
     
+    public LocalDateTime getArrivalDate() {
+    return this.departureDate.plusHours(this.hoursDurationArrival).plusMinutes(this.minutesDurationArrival);
+    }
+
+    
     /**
      *
      * @return

@@ -50,21 +50,22 @@ public class FlightRepository {
     }
 
     public List<Flight> getAllFlights() {
-        List<Flight> sortedList = new ArrayList<>();
+    List<Flight> sortedList = new ArrayList<>();
 
-        for (Flight f : flights) {
-            sortedList.add(f.clone());
-        }
-
-        Collections.sort(sortedList, new Comparator<Flight>() {
-            @Override
-            public int compare(Flight f1, Flight f2) {
-                return f1.getId().compareTo(f2.getId());
-            }
-        });
-
-        return sortedList;
+    for (Flight f : flights) {
+        sortedList.add(f.clone());
     }
+
+    // Ahora ordenamos por fecha de salida (departureDate)
+    Collections.sort(sortedList, new Comparator<Flight>() {
+        @Override
+        public int compare(Flight f1, Flight f2) {
+            return f1.getDepartureDate().compareTo(f2.getDepartureDate());
+        }
+    });
+
+    return sortedList;
+}
    
 
         

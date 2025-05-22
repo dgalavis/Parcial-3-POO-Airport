@@ -43,9 +43,7 @@ public class PassengerController {
         return new Response("Pasajero registrado exitosamente.", Status.CREATED);
     }
    // NUEVO: método para actualizar pasajero
-    public static Response updatePassenger(String idStr, String firstname, String lastname,
-                                           String birthStr, String phoneCodeStr, String phoneStr,
-                                           String country) {
+    public static Response updatePassenger(String idStr, String firstname, String lastname,String birthStr, String phoneCodeStr, String phoneStr,String country) {
         PassengerRepository repo = AirportStorage.getInstance().getPassengerRepo();
 
         // Validar y parsear los datos (en modo actualización)
