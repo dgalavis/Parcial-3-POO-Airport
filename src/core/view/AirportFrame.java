@@ -1761,13 +1761,12 @@ public class AirportFrame extends javax.swing.JFrame {
     String hoursStr = hoursDelay.getItemAt(hoursDelay.getSelectedIndex());
     String minutesStr = minutesDelay.getItemAt(minutesDelay.getSelectedIndex());
 
-    // Crear el controlador
+    // Ejecutar acción con el controlador
     FlightController controller = new FlightController(flightRepo, locationRepo, planeRepo);
-
-    // Ejecutar la acción
     Response response = controller.delayFlight(flightId, hoursStr, minutesStr);
+    System.out.println("Vuelo " + flightId + " retrasado " + hoursStr + "h " + minutesStr + "m");
 
-    // Mostrar mensaje con el esquema que ya manejas
+    // Mostrar mensaje
     if (response.getStatus() >= 500) {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
     } else if (response.getStatus() >= 400) {
@@ -1775,10 +1774,11 @@ public class AirportFrame extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-        
+        // Actualizar la tabla
+        DefaultTableModel model = (DefaultTableModel) showFlightsJTable.getModel();
+        FlightTableList.updateFlightsList(model);
 
-        // Resetear campos del formulario
-        ComboLoader.cargarFlight(idFlight);
+        // Resetear combos
         idFlight.setSelectedIndex(0);
         hoursDelay.setSelectedIndex(0);
         minutesDelay.setSelectedIndex(0);

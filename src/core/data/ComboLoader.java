@@ -32,8 +32,6 @@ public class ComboLoader {
     public static void cargarComboLocation(JComboBox<String> combo) {
         for (Location l : AirportStorage.getInstance().getLocationRepository().getAllLocations()) {
             combo.addItem(String.valueOf(l.getAirportId()));
-            combo.addItem(String.valueOf(l.getAirportId()));
-            combo.addItem(String.valueOf(l.getAirportId()));
         }
     }
     

@@ -54,6 +54,7 @@ public class FlightRepository {
 
     for (Flight f : flights) {
         sortedList.add(f.clone());
+        //sortedList.add(f); // ← sin clone
     }
 
     // Ahora ordenamos por fecha de salida (departureDate)
@@ -65,7 +66,17 @@ public class FlightRepository {
     });
 
     return sortedList;
-}
+    }
+    
+    public Flight getFlightRaw(String id) {
+    for (Flight f : flights) {
+        if (f.getId().equals(id)) {
+            return f; // SIN clone
+        }
+    }
+    return null;
+    }
+
    
 
         

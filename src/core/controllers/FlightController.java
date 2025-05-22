@@ -81,14 +81,26 @@ public class FlightController {
     public Response delayFlight(String flightId, String hoursStr, String minutesStr) {
     Response validation = FlightValidator.validateDelay(flightId, hoursStr, minutesStr, flightRepo);
 
-    if (validation.getStatus() != Status.OK) {
-        return validation;
+        if (validation.getStatus() != Status.OK) {
+            return validation;
+        }
+
+        int hours = Integer.parseInt(hoursStr);
+        int minutes = Integer.parseInt(minutesStr);
+
+        Flight flight = flightRepo.getFlightRaw(flightId);
+
+        if (flight == null) {
+            return new Response("Vuelo no encontrado para retrasar.", Status.NOT_FOUND);
+        }
+
+        System.out.println("ANTES de delay: " + flight.getDepartureDate());
+        flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
+        System.out.println("DESPUÉS de delay: " + flight.getDepartureDate());
+
+
+        return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
-
-    Flight updated = (Flight) validation.getObject();
-
-    return new Response("Vuelo retrasado correctamente.", Status.OK, updated.clone());
-}
 
     
 }
