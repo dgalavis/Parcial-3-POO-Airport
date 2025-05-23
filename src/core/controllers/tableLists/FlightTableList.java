@@ -8,6 +8,7 @@ import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.models.Flight;
 import core.models.storage.AirportStorage;
+import core.models.utils.FlightCalculations;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,19 +26,19 @@ public class FlightTableList {
             if (flights.isEmpty()) {
                 return new Response("No hay vuelos registrados.", Status.NO_CONTENT);
             }
+            
+            FlightCalculations flightCalculations = new FlightCalculations();
 
             for (Flight f : flights) {
                 model.addRow(new Object[]{
-                    f.getId(),                                       // ID del vuelo
-                    f.getDepartureLocation().getAirportCity(),       // Ciudad de origen
-                    f.getArrivalLocation().getAirportCity(),         // Ciudad de destino
-                    f.getScaleLocation() != null ? f.getScaleLocation().getAirportCity() : "No scale", // Escala si existe
-                    f.getDepartureDate(),                            //Fecha y hora de salida
-                    f.getArrivalDate(),                              // Fecha y hora de llegada
-                    f.getPlane().getId(),                            // Id Avión
-                    f.getNumPassengers(),                            // Número de Pasajeros
-
-                    
+                    f.getId(),
+                    f.getDepartureLocation().getAirportCity(),
+                    f.getArrivalLocation().getAirportCity(),
+                    f.getScaleLocation() != null ? f.getScaleLocation().getAirportCity() : "No scale",
+                    f.getDepartureDate(),
+                    flightCalculations.calculateArrivalDate(f),  
+                    f.getPlane().getId(),
+                    f.getNumPassengers(),
                 });
             }
 

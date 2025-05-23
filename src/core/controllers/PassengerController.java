@@ -7,8 +7,10 @@ package core.controllers;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.validators.PassengerValidator;
+import core.models.Flight;
 import core.models.Passenger;
 import core.models.storage.AirportStorage;
+import core.models.storage.FlightRepository;
 import core.models.storage.PassengerRepository;
 
 /**
@@ -16,7 +18,7 @@ import core.models.storage.PassengerRepository;
  * @author lhaur
  */
 public class PassengerController {
-    
+  
    public static Response registerPassenger(String idStr, String firstname, String lastname,
                                              String birthStr, String phoneCodeStr, String phoneStr,
                                              String country) {
@@ -70,5 +72,7 @@ public class PassengerController {
 
         return new Response("Pasajero actualizado exitosamente.", Status.OK);
     }
+    
+   
 
 }

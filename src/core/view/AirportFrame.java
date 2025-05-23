@@ -15,6 +15,7 @@ import core.controllers.PassengerController;
 import core.controllers.PlaneController;
 import core.controllers.tableLists.FlightTableList;
 import core.controllers.tableLists.LocationTableList;
+import core.controllers.tableLists.PassengerFlightsTableList;
 import core.controllers.tableLists.PassengerTableList;
 import core.controllers.tableLists.PlaneTableList;
 import core.controllers.utils.Response;
@@ -92,7 +93,8 @@ public class AirportFrame extends javax.swing.JFrame {
         ComboLoader.cargarComboLocation(DepartureLocationSelect);
         ComboLoader.cargarComboLocation(ArrivalLocationSelect);
         ComboLoader.cargarComboLocation(ScaleLocationSelect);
-        
+        ComboLoader.cargarFlight(idFlightPassenger);
+  
     }
     
     private void blockPanels() {
@@ -255,7 +257,7 @@ public class AirportFrame extends javax.swing.JFrame {
         jTextField28 = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        idFlightPassenger = new javax.swing.JComboBox<>();
         jButton12 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -1029,8 +1031,13 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel45.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel45.setText("Flight:");
 
-        jComboBox5.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Flight" }));
+        idFlightPassenger.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        idFlightPassenger.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Flight" }));
+        idFlightPassenger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFlightPassengerActionPerformed(evt);
+            }
+        });
 
         jButton12.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jButton12.setText("Add");
@@ -1051,7 +1058,7 @@ public class AirportFrame extends javax.swing.JFrame {
                     .addComponent(jLabel45))
                 .addGap(79, 79, 79)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idFlightPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(873, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
@@ -1071,7 +1078,7 @@ public class AirportFrame extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel45)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idFlightPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
@@ -1732,27 +1739,31 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_UpdatePassengerButtonActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        long passengerId = Long.parseLong(jTextField28.getText());
-        String flightId = jComboBox5.getItemAt(jComboBox5.getSelectedIndex());
+        try {
+            long passengerId = Long.parseLong(jTextField28.getText());
+            String flightId = idFlightPassenger.getItemAt(idFlightPassenger.getSelectedIndex());
 
-        Passenger passenger = null;
-        Flight flight = null;
+            FlightController controller = new FlightController(
+                AirportStorage.getInstance().getFlightRepository(),
+                AirportStorage.getInstance().getLocationRepository(),
+                AirportStorage.getInstance().getPlaneRepo()
+            );
 
-        for (Passenger p : this.passengers) {
-            if (p.getId() == passengerId) {
-                passenger = p;
+            Response response = controller.addPassengerToFlight(passengerId, flightId);
+
+            if (response.getStatus() >= 500) {
+                JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
+            } else if (response.getStatus() >= 400) {
+                JOptionPane.showMessageDialog(this, response.getMessage(), "Advertencia " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+                jTextField28.setText("");
+                idFlightPassenger.setSelectedIndex(0);
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        for (Flight f : this.flights) {
-            if (flightId.equals(f.getId())) {
-                flight = f;
-            }
-        }
-
-        passenger.addFlight(flight);
-        flight.addPassenger(passenger);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1786,26 +1797,36 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        long passengerId = Long.parseLong(userSelect.getItemAt(userSelect.getSelectedIndex()));
+        System.out.println("Botón presionado");
 
-        Passenger passenger = null;
-        for (Passenger p : this.passengers) {
-            if (p.getId() == passengerId) {
-                passenger = p;
-            }
-        }
+    Passenger selectedPassenger = (Passenger) userSelect.getSelectedItem();
 
-        ArrayList<Flight> flights = passenger.getFlights();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        for (Flight flight : flights) {
-            model.addRow(new Object[]{flight.getId(), flight.getDepartureDate(), calculator.calculateArrivalDate(flight)});
-        }
+    if (selectedPassenger == null) {
+        System.out.println("No hay pasajero seleccionado");
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un pasajero.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    System.out.println("Pasajero seleccionado: " + selectedPassenger);
+
+    Response response = PassengerFlightsTableList.updatePassengerFlightsList(
+        (DefaultTableModel) showFlightsJTable.getModel(),
+        selectedPassenger
+    );
+
+    System.out.println("Response: " + response.getMessage());
+
+    if (response.getStatus() >= 500) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
+    } else if (response.getStatus() >= 400) {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Advertencia " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void RefreshPassengerTableButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshPassengerTableButtomActionPerformed
-        Response response = PassengerTableList.updatePassengersList((DefaultTableModel) passengerTable.getModel());
+       Response response = PassengerTableList.updatePassengersList((DefaultTableModel) passengerTable.getModel());
 
        if (response.getStatus() >= 500) {
            JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
@@ -1889,19 +1910,9 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_DepartureLocationSelectActionPerformed
 
     private void idFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFlightActionPerformed
-        // ID VUELO hay q ver esto
-        try {
-            String id = idFlight.getSelectedItem().toString();
-            if (! id.equals(idFlight.getItemAt(0))) {
-                IdUpdateTextField.setText(id);
-                jTextField28.setText(id);
-            }
-            else{
-                IdUpdateTextField.setText("");
-                jTextField28.setText("");
-            }
-        } catch (Exception e) {
-        }
+        // ID VUELO
+        String id = idFlight.getSelectedItem().toString();
+            
     }//GEN-LAST:event_idFlightActionPerformed
 
     private void userSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSelectActionPerformed
@@ -1918,6 +1929,11 @@ public class AirportFrame extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_userSelectActionPerformed
+
+    private void idFlightPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFlightPassengerActionPerformed
+        //ID VUELO
+        String id = idFlightPassenger.getSelectedItem().toString();         
+    }//GEN-LAST:event_idFlightPassengerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1990,12 +2006,12 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JButton createPlanejButton;
     private javax.swing.JComboBox<String> hoursDelay;
     private javax.swing.JComboBox<String> idFlight;
+    private javax.swing.JComboBox<String> idFlightPassenger;
     private javax.swing.JTextField idFlightTextField;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

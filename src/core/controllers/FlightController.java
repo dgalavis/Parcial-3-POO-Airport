@@ -8,6 +8,7 @@ import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.controllers.validators.FlightValidator;
 import core.models.Flight;
+import core.models.Passenger;
 import core.models.storage.AirportStorage;
 import core.models.storage.FlightRepository;
 import core.models.storage.LocationRepository;
@@ -101,6 +102,22 @@ public class FlightController {
 
         return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
-
     
+    public Response addPassengerToFlight(long passengerId, String flightId) {
+        Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
+        if (passenger == null) {
+            return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
+        }
+
+        Flight flight = flightRepo.getFlightRaw(flightId);
+        if (flight == null) {
+            return new Response("Vuelo no encontrado.", Status.NOT_FOUND);
+        }
+
+        passenger.addFlight(flight);
+        flight.addPassenger(passenger);
+
+        return new Response("Pasajero añadido correctamente al vuelo.", Status.OK);
+    }
+ 
 }

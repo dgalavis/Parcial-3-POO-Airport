@@ -4,15 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/Flight.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/PassengerTableList.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/storage/PassengerRepository.java</file>
             <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/FlightController.java</file>
-            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/utils/Status.java</file>
-            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/PassengerController.java</file>
-            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/utils/Response.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/data/ComboLoader.java</file>
             <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/FlightTableList.java</file>
             <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/storage/FlightRepository.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/PassengerFlightsTableList.java</file>
             <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/view/AirportFrame.java</file>
-            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/utils/FlightDelay.java</file>
-            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/PlaneTableList.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/storage/AirportStorage.java</file>
+            <file>file:/C:/Users/lhaur/OneDrive/Desktop/POO/Parcial-3-POO-Airport/src/core/models/utils/FlightCalculations.java</file>
         </group>
     </open-files>
 </project-private>
