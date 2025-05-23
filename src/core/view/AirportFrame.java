@@ -1802,7 +1802,6 @@ public class AirportFrame extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void RefreshPassengerTableButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshPassengerTableButtomActionPerformed
