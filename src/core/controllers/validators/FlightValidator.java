@@ -189,7 +189,7 @@ public class FlightValidator {
     //  Se modifica directamente el vuelo real (como en Passenger)
     flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
 
-    return new Response("Vuelo retrasado correctamente.", Status.OK, flight); // devuelves el modificado
+    return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone()); // devuelves el modificado
 }
 
 
