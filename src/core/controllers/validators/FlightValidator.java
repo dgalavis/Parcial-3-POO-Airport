@@ -186,7 +186,7 @@ public class FlightValidator {
         return new Response("Las horas y minutos deben ser numéricos.", Status.BAD_REQUEST);
     }
 
-    // 💥 Se modifica directamente el vuelo real (como en Passenger)
+    //  Se modifica directamente el vuelo real (como en Passenger)
     flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
 
     return new Response("Vuelo retrasado correctamente.", Status.OK, flight); // devuelves el modificado

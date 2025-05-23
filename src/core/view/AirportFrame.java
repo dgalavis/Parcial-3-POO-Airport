@@ -1612,7 +1612,7 @@ public class AirportFrame extends javax.swing.JFrame {
         String longitude = longitudeAirport.getText();
         
         // Inicializar controlador local (NO en el constructor)
-        LocationRepository locationRepository = new LocationRepository();
+        LocationRepository locationRepository = AirportStorage.getInstance().getLocationRepository();
         LocationController locationController = new LocationController(locationRepository);
 
         
@@ -1791,7 +1791,6 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    try {
     long passengerId = Long.parseLong(jTextField28.getText());
     
     Response response = PassengerFlightsTableList.updatePassengerFlightsList((DefaultTableModel) showMyFlightsJTable.getModel(), passengerId);
@@ -1804,9 +1803,6 @@ public class AirportFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
 
-} catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(this, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
-}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void RefreshPassengerTableButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshPassengerTableButtomActionPerformed
