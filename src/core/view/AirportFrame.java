@@ -1743,11 +1743,7 @@ public class AirportFrame extends javax.swing.JFrame {
             long passengerId = Long.parseLong(jTextField28.getText());
             String flightId = idFlightPassenger.getItemAt(idFlightPassenger.getSelectedIndex());
 
-            FlightController controller = new FlightController(
-                AirportStorage.getInstance().getFlightRepository(),
-                AirportStorage.getInstance().getLocationRepository(),
-                AirportStorage.getInstance().getPlaneRepo()
-            );
+            FlightController controller = new FlightController(AirportStorage.getInstance().getFlightRepository(), AirportStorage.getInstance().getLocationRepository(),AirportStorage.getInstance().getPlaneRepo());
 
             Response response = controller.addPassengerToFlight(passengerId, flightId);
 
@@ -1757,9 +1753,6 @@ public class AirportFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, response.getMessage(), "Advertencia " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-                jTextField28.setText("");
-                idFlightPassenger.setSelectedIndex(0);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1797,29 +1790,19 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("Botón presionado");
-
-    Passenger selectedPassenger = (Passenger) userSelect.getSelectedItem();
-
-    if (selectedPassenger == null) {
-        System.out.println("No hay pasajero seleccionado");
-        JOptionPane.showMessageDialog(this, "Debe seleccionar un pasajero.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        int selectedRow = passengerTable.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona un pasajero.", "Error", JOptionPane.WARNING_MESSAGE);
         return;
     }
-
-    System.out.println("Pasajero seleccionado: " + selectedPassenger);
-
-    Response response = PassengerFlightsTableList.updatePassengerFlightsList(
-        (DefaultTableModel) showFlightsJTable.getModel(),
-        selectedPassenger
-    );
-
-    System.out.println("Response: " + response.getMessage());
+        Long passengerId = (Long) passengerTable.getValueAt(selectedRow, 0);
+        Response response = PassengerFlightsTableList.updatePassengerFlightsList(
+        (DefaultTableModel) showFlightsJTable.getModel(), passengerId);
 
     if (response.getStatus() >= 500) {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
     } else if (response.getStatus() >= 400) {
-        JOptionPane.showMessageDialog(this, response.getMessage(), "Advertencia " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }

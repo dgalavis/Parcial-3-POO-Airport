@@ -20,37 +20,34 @@ import javax.swing.table.DefaultTableModel;
  * @author lhaur
  */
 public class PassengerFlightsTableList {
-   public static Response updatePassengerFlightsList(DefaultTableModel model, Passenger passenger) {
-        try {
-            model.setRowCount(0);  // Limpiar tabla
+    public static Response updatePassengerFlightsList(DefaultTableModel model, long passengerId) {
+    try {
+        model.setRowCount(0);
 
-            if (passenger == null) {
-                return new Response("No se proporcionó un pasajero válido.", Status.BAD_REQUEST);
-            }
-
-            List<Flight> flights = passenger.getFlights();
-
-            if (flights == null || flights.isEmpty()) {
-                JOptionPane.showMessageDialog(null,"No tiene vuelos registrados.","Pasajero sin vuelos",JOptionPane.INFORMATION_MESSAGE);
-                return new Response("Pasajero sin vuelos.", Status.NO_CONTENT);
-            }
-
-            FlightCalculations flightCalculations = new FlightCalculations();
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-            for (Flight f : flights) {
-                model.addRow(new Object[]{
-                    f.getId(),
-                    f.getDepartureDate().format(formatter),
-                    flightCalculations.calculateArrivalDate(f).format(formatter)
-                });
-            }
-
-            return new Response("Lista de vuelos del pasajero cargada correctamente.", Status.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new Response("Error inesperado al cargar la lista del pasajero.", Status.INTERNAL_SERVER_ERROR);
+        Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
+        if (passenger == null) {
+            return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
         }
+
+        List<Flight> flights = passenger.getFlights();
+        if (flights == null || flights.isEmpty()) {
+            return new Response("El pasajero no tiene vuelos asignados.", Status.NO_CONTENT);
+        }
+
+        FlightCalculations flightCalculations = new FlightCalculations();
+
+        for (Flight f : flights) {
+            model.addRow(new Object[]{
+                f.getId(),
+                f.getDepartureDate(),
+                flightCalculations.calculateArrivalDate(f)
+            });
+        }
+
+        return new Response("Lista de vuelos del pasajero cargada correctamente.", Status.OK);
+
+    } catch (Exception e) {
+        return new Response("Error inesperado al cargar vuelos del pasajero.", Status.INTERNAL_SERVER_ERROR);
     }
+}
 }

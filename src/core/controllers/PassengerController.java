@@ -12,6 +12,9 @@ import core.models.Passenger;
 import core.models.storage.AirportStorage;
 import core.models.storage.FlightRepository;
 import core.models.storage.PassengerRepository;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -73,6 +76,13 @@ public class PassengerController {
         return new Response("Pasajero actualizado exitosamente.", Status.OK);
     }
     
-   
-
+    public static List<Flight> getFlightsByPassengerId(long passengerId) {
+        PassengerRepository repo = AirportStorage.getInstance().getPassengerRepo();
+        Passenger passenger = repo.getPassenger(passengerId);
+        if (passenger != null) {
+            return passenger.getFlights(); // asumo que tienes un getter que devuelve List<Flight>
+        }
+        return Collections.emptyList(); // si no existe pasajero, retorna lista vacía
+    }
+    
 }
