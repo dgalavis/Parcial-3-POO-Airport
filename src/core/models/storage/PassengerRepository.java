@@ -35,7 +35,7 @@ public class PassengerRepository {
     public Passenger getPassenger(Long id) {
         for (Passenger p : passengers) {
            if (p.getId() == id) {
-                return p.clone(); // Patrón Prototype
+                return p; // Patrón Prototype
             }
         }
         return null;

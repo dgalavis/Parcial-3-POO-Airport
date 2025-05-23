@@ -258,10 +258,10 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         idFlightPassenger = new javax.swing.JComboBox<>();
-        jButton12 = new javax.swing.JButton();
+        addPassengerFlightButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        showMyFlightsJTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -1039,11 +1039,11 @@ public class AirportFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jButton12.setText("Add");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        addPassengerFlightButton.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        addPassengerFlightButton.setText("Add");
+        addPassengerFlightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                addPassengerFlightButtonActionPerformed(evt);
             }
         });
 
@@ -1063,7 +1063,7 @@ public class AirportFrame extends javax.swing.JFrame {
                 .addContainerGap(873, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addPassengerFlightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(509, 509, 509))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1080,14 +1080,14 @@ public class AirportFrame extends javax.swing.JFrame {
                     .addComponent(jLabel45)
                     .addComponent(idFlightPassenger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addPassengerFlightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
 
         jTabbedPane1.addTab("Add to flight", jPanel6);
 
-        jTable1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        showMyFlightsJTable.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        showMyFlightsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -1113,7 +1113,7 @@ public class AirportFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(showMyFlightsJTable);
 
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jButton2.setText("Refresh");
@@ -1128,13 +1128,14 @@ public class AirportFrame extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(269, 269, 269)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(527, 527, 527))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(519, 519, 519)
+                        .addComponent(jButton2)))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1738,7 +1739,7 @@ public class AirportFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdatePassengerButtonActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void addPassengerFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPassengerFlightButtonActionPerformed
         try {
             long passengerId = Long.parseLong(jTextField28.getText());
             String flightId = idFlightPassenger.getItemAt(idFlightPassenger.getSelectedIndex());
@@ -1757,7 +1758,7 @@ public class AirportFrame extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_addPassengerFlightButtonActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // Obtener datos del formulario
@@ -1790,22 +1791,22 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int selectedRow = passengerTable.getSelectedRow();
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, selecciona un pasajero.", "Error", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-        Long passengerId = (Long) passengerTable.getValueAt(selectedRow, 0);
-        Response response = PassengerFlightsTableList.updatePassengerFlightsList(
-        (DefaultTableModel) showFlightsJTable.getModel(), passengerId);
+    try {
+    long passengerId = Long.parseLong(jTextField28.getText());
+    
+    Response response = PassengerFlightsTableList.updatePassengerFlightsList((DefaultTableModel) showMyFlightsJTable.getModel(), passengerId);
 
     if (response.getStatus() >= 500) {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.ERROR_MESSAGE);
     } else if (response.getStatus() >= 400) {
-        JOptionPane.showMessageDialog(this, response.getMessage(), "Error " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, response.getMessage(), "Advertencia " + response.getStatus(), JOptionPane.WARNING_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(this, response.getMessage(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
+
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "ID inválido", "Error", JOptionPane.ERROR_MESSAGE);
+}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void RefreshPassengerTableButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshPassengerTableButtomActionPerformed
@@ -1979,6 +1980,7 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JButton UpdatePassengerButton;
     private javax.swing.JTextField YearRegistrationTextField;
     private javax.swing.JTextField YearUpdateTextField;
+    private javax.swing.JButton addPassengerFlightButton;
     private javax.swing.JRadioButton administrator;
     private javax.swing.JTextField airportId;
     private javax.swing.JTextField añoTextField;
@@ -1991,7 +1993,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> idFlight;
     private javax.swing.JComboBox<String> idFlightPassenger;
     private javax.swing.JTextField idFlightTextField;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
@@ -2062,7 +2063,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField latitudeAirport;
     private javax.swing.JTextField longitudeAirport;
@@ -2075,6 +2075,7 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> planeSelect;
     private javax.swing.JTable planeTable;
     private javax.swing.JTable showFlightsJTable;
+    private javax.swing.JTable showMyFlightsJTable;
     private javax.swing.JRadioButton user;
     private javax.swing.JComboBox<String> userSelect;
     // End of variables declaration//GEN-END:variables

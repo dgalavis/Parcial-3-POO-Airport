@@ -104,20 +104,20 @@ public class FlightController {
     }
     
     public Response addPassengerToFlight(long passengerId, String flightId) {
-        Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
-        if (passenger == null) {
-            return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
-        }
-
-        Flight flight = flightRepo.getFlightRaw(flightId);
-        if (flight == null) {
-            return new Response("Vuelo no encontrado.", Status.NOT_FOUND);
-        }
-
-        passenger.addFlight(flight);
-        flight.addPassenger(passenger);
-
-        return new Response("Pasajero añadido correctamente al vuelo.", Status.OK);
+    Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
+    if (passenger == null) {
+        return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
     }
+
+    Flight flight = flightRepo.getFlightRaw(flightId);
+    if (flight == null) {
+        return new Response("Vuelo no encontrado.", Status.NOT_FOUND);
+    }
+
+    passenger.addFlight(flight);
+    flight.addPassenger(passenger);
+
+    return new Response("Pasajero añadido correctamente al vuelo.", Status.OK);
+}
  
 }
