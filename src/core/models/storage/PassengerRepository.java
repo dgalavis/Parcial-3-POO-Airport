@@ -32,11 +32,17 @@ public class PassengerRepository {
         return true;
     }
     
+   
+    public Passenger getPassengerRaw(Long id) {
+        for (Passenger p : passengers) {
+            if (p.getId() == id) return p; // Referencia real
+        }
+        return null;
+    }
+
     public Passenger getPassenger(Long id) {
         for (Passenger p : passengers) {
-           if (p.getId() == id) {
-                return p; // Patrón Prototype
-            }
+            if (p.getId() == id) return p.clone(); // Patrón Prototype
         }
         return null;
     }

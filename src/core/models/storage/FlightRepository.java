@@ -17,9 +17,6 @@ import java.util.List;
 public class FlightRepository {
     private  List<Flight> flights= new ArrayList<>();
     
-    // =====================================
-    // MÉTODOS PARA FLIGHT
-    // =====================================
     public boolean addFlight(Flight flight) {
     for (Flight f : this.flights) {
         if (f.getId().equals(flight.getId())) {
@@ -48,13 +45,21 @@ public class FlightRepository {
         }
         return false;
     }
+    
+    public Flight getFlightRaw(String id) {
+    for (Flight f : flights) {
+        if (f.getId().equals(id)) {
+            return f; // SIN clone
+        }
+    }
+    return null;
+    }
 
     public List<Flight> getAllFlights() {
     List<Flight> sortedList = new ArrayList<>();
 
     for (Flight f : flights) {
         sortedList.add(f.clone());
-        //sortedList.add(f); // ← sin clone
     }
 
     // Ahora ordenamos por fecha de salida (departureDate)
@@ -66,18 +71,6 @@ public class FlightRepository {
     });
 
     return sortedList;
-    }
-    
-    public Flight getFlightRaw(String id) {
-    for (Flight f : flights) {
-        if (f.getId().equals(id)) {
-            return f; // SIN clone
-        }
-    }
-    return null;
-    }
 
-   
-
-        
+    }       
 }

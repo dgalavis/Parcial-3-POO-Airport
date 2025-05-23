@@ -6,12 +6,13 @@ package core.models;
 
 import core.models.interfaces.CloneableModel;
 import java.util.ArrayList;
+import core.models.interfaces.AddFlights;
 
 /**
  *
  * @author edangulo
  */
-public class Plane implements CloneableModel<Plane> {
+public class Plane implements CloneableModel<Plane>, AddFlights {
     
     private final String id;
     private String brand;
@@ -57,9 +58,10 @@ public class Plane implements CloneableModel<Plane> {
         return flights;
     }
     
-  
     
     @Override
+
+    
     public Plane clone() {
         Plane copy = new Plane(
             this.id,

@@ -16,9 +16,7 @@ import java.util.List;
  */
 public class LocationRepository {
     private  List<Location> locations= new ArrayList<>();
-     // =====================================
-    // MÉTODOS PARA LOCATION
-    // =====================================
+
     public boolean addLocation(Location location) {
     for (Location l : this.locations) {
         if (l.getAirportId().equals(location.getAirportId())) {

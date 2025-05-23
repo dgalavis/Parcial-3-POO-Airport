@@ -12,6 +12,7 @@ import core.models.Passenger;
 import core.models.storage.AirportStorage;
 import core.models.storage.FlightRepository;
 import core.models.storage.LocationRepository;
+import core.models.storage.PassengerRepository;
 import core.models.storage.PlaneRepository;
 
 /**
@@ -80,7 +81,7 @@ public class FlightController {
     
     
     public Response delayFlight(String flightId, String hoursStr, String minutesStr) {
-    Response validation = FlightValidator.validateDelay(flightId, hoursStr, minutesStr, flightRepo);
+        Response validation = FlightValidator.validateDelay(flightId, hoursStr, minutesStr, flightRepo);
 
         if (validation.getStatus() != Status.OK) {
             return validation;
@@ -94,30 +95,38 @@ public class FlightController {
         if (flight == null) {
             return new Response("Vuelo no encontrado para retrasar.", Status.NOT_FOUND);
         }
-
+        //eliminar los println
         System.out.println("ANTES de delay: " + flight.getDepartureDate());
         flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
         System.out.println("DESPUÉS de delay: " + flight.getDepartureDate());
-
 
         return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
     
     public Response addPassengerToFlight(long passengerId, String flightId) {
-    Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
-    if (passenger == null) {
-        return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
+        PassengerRepository passengerRepo = AirportStorage.getInstance().getPassengerRepo();
+        Passenger passenger = passengerRepo.getPassengerRaw(passengerId); 
+
+        if (passenger == null) {
+            return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
+        }
+
+        Flight flight = flightRepo.getFlightRaw(flightId);
+        if (flight == null) {
+            return new Response("Vuelo no encontrado.", Status.NOT_FOUND);
+        }
+
+        boolean yaTieneVuelo = passenger.getFlights().stream()
+            .anyMatch(f -> f.getId().equals(flightId));
+
+        if (yaTieneVuelo) {
+            return new Response("Este pasajero ya está registrado en ese vuelo.", Status.BAD_REQUEST);
+        }
+
+        passenger.addFlight(flight);
+        flight.addPassenger(passenger);
+
+        return new Response("Pasajero añadido correctamente al vuelo.", Status.OK);
     }
-
-    Flight flight = flightRepo.getFlightRaw(flightId);
-    if (flight == null) {
-        return new Response("Vuelo no encontrado.", Status.NOT_FOUND);
-    }
-
-    passenger.addFlight(flight);
-    flight.addPassenger(passenger);
-
-    return new Response("Pasajero añadido correctamente al vuelo.", Status.OK);
-}
  
 }

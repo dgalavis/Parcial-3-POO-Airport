@@ -4,6 +4,7 @@
  */
 package core.models;
 
+import core.models.interfaces.AddFlights;
 import core.models.interfaces.CloneableModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author edangulo
  */
-public class Passenger implements CloneableModel<Passenger> {
+public class Passenger implements CloneableModel<Passenger>, AddFlights{
     
     private final long id;
     private String firstname;
