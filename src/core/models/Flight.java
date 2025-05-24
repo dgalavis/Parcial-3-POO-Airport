@@ -151,4 +151,5 @@ public class Flight implements CloneableModel<Flight> {
         return copy;
     }
 
+
 }

@@ -22,7 +22,7 @@ import java.time.format.DateTimeParseException;
  * @author lhaur
  */
 public class FlightValidator {
-     public static Response parseAndValidate(
+    public static Response parseAndValidate(
         String id,
         String departureLocationId,
         String arrivalLocationId,
@@ -64,7 +64,7 @@ public class FlightValidator {
         Plane plane = planeRepo.getPlane(planeId);
         if (plane == null) return new Response("El avión no existe.", Status.BAD_REQUEST);
 
-                // === Validar fecha y hora ===
+        // === Validar fecha y hora de salida ===
         if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
             return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
         }
@@ -96,8 +96,8 @@ public class FlightValidator {
             return new Response("La duración de llegada debe ser numérica.", Status.BAD_REQUEST);
         }
 
-        // === Validar escala si se proporciona ===
-        boolean hasScale = !isNullOrEmpty(scaleLocationId);
+        // === Validar escala ===
+        boolean hasScale = !isNullOrEmpty(scaleLocationId) && !scaleLocationId.equalsIgnoreCase("None");
         Location scale = null;
         int hoursScale = 0, minutesScale = 0;
 
@@ -121,6 +121,10 @@ public class FlightValidator {
             } catch (NumberFormatException e) {
                 return new Response("La duración de la escala debe ser numérica.", Status.BAD_REQUEST);
             }
+        } else {
+            // 🚀 Si no hay escala, forzar tiempo = 0
+            hoursScale = 0;
+            minutesScale = 0;
         }
 
         // === Crear el vuelo usando el constructor correcto ===
@@ -156,42 +160,38 @@ public class FlightValidator {
     private static boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
-    
-    
-    //Delay Validator 
-   public static Response validateDelay(String flightId, String hoursStr, String minutesStr, FlightRepository repo) {
-    if (isNullOrEmpty(flightId)) {
-        return new Response("El ID del vuelo no puede estar vacío.", Status.BAD_REQUEST);
-    }
 
-    Flight flight = repo.getFlight(flightId); // devuelve el real (NO clone)
-    if (flight == null) {
-        return new Response("El vuelo no existe.", Status.NOT_FOUND);
-    }
-
-    int hours, minutes;
-    try {
-        hours = Integer.parseInt(hoursStr);
-        minutes = Integer.parseInt(minutesStr);
-
-        if (hours < 0 || minutes < 0 || minutes > 59) {
-            return new Response("Horas o minutos inválidos.", Status.BAD_REQUEST);
+    // === Delay Validator ===
+    public static Response validateDelay(String flightId, String hoursStr, String minutesStr, FlightRepository repo) {
+        if (isNullOrEmpty(flightId)) {
+            return new Response("El ID del vuelo no puede estar vacío.", Status.BAD_REQUEST);
         }
 
-        if (hours == 0 && minutes == 0) {
-            return new Response("El retraso no puede ser cero.", Status.BAD_REQUEST);
+        Flight flight = repo.getFlight(flightId);
+        if (flight == null) {
+            return new Response("El vuelo no existe.", Status.NOT_FOUND);
         }
 
-    } catch (NumberFormatException e) {
-        return new Response("Las horas y minutos deben ser numéricos.", Status.BAD_REQUEST);
+        int hours, minutes;
+        try {
+            hours = Integer.parseInt(hoursStr);
+            minutes = Integer.parseInt(minutesStr);
+
+            if (hours < 0 || minutes < 0 || minutes > 59) {
+                return new Response("Horas o minutos inválidos.", Status.BAD_REQUEST);
+            }
+
+            if (hours == 0 && minutes == 0) {
+                return new Response("El retraso no puede ser cero.", Status.BAD_REQUEST);
+            }
+
+        } catch (NumberFormatException e) {
+            return new Response("Las horas y minutos deben ser numéricos.", Status.BAD_REQUEST);
+        }
+
+        // Modificar directamente el vuelo real
+        flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
+
+        return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
-
-    //  Se modifica directamente el vuelo real (como en Passenger)
-    flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
-
-    return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone()); // devuelves el modificado
-}
-
-
-
 }
