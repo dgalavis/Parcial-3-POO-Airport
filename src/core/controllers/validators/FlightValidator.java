@@ -125,23 +125,9 @@ public class FlightValidator {
         //Crear el vuelo usando el constructor correcto 
         Flight flight;
         if (hasScale) {
-            flight = new Flight(
-               id,plane,departure,scale,arrival,departureDateTime,
-                hoursArrival,
-                minutesArrival,
-                hoursScale,
-                minutesScale
-            );
+            flight = new Flight(id,plane,departure,scale,arrival,departureDateTime,hoursArrival,minutesArrival,hoursScale,minutesScale);
         } else {
-            flight = new Flight(
-                id,
-                plane,
-                departure,
-                arrival,
-                departureDateTime,
-                hoursArrival,
-                minutesArrival
-            );
+            flight = new Flight(id,plane,departure,arrival,departureDateTime,hoursArrival,minutesArrival);
         }
 
         return new Response("Validación exitosa.", Status.OK, flight);
