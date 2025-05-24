@@ -22,31 +22,15 @@ import java.time.format.DateTimeParseException;
  * @author lhaur
  */
 public class FlightValidator {
-    public static Response parseAndValidate(
-        String id,
-        String departureLocationId,
-        String arrivalLocationId,
-        String departureDateStr,
-        String departureTimeStr,
-        String hoursArrivalStr,
-        String minutesArrivalStr,
-        String planeId,
-        String scaleLocationId,
-        String hoursScaleStr,
-        String minutesScaleStr,
-        FlightRepository flightRepo,
-        LocationRepository locationRepo,
-        PlaneRepository planeRepo,
-        boolean isUpdate
-    ) {
-        // === Validar ID ===
+    public static Response parseAndValidate(String id,String departureLocationId,String arrivalLocationId,String departureDateStr,String departureTimeStr,String hoursArrivalStr,String minutesArrivalStr,String planeId,String scaleLocationId,String hoursScaleStr,String minutesScaleStr,FlightRepository flightRepo,LocationRepository locationRepo,PlaneRepository planeRepo,boolean isUpdate) {
+        // Validar ID
         if (isNullOrEmpty(id)) return new Response("El ID no puede estar vacío.", Status.BAD_REQUEST);
-        if (!id.matches("[A-Z]{3}[0-9]{3}")) return new Response("El ID debe tener el formato XXX123.", Status.BAD_REQUEST);
+        if (!id.matches("[A-Z]{3}[0-9]{3}")) return new Response("El ID debe tener el formato XXX123. Tres Mayúsculas y 3 números.", Status.BAD_REQUEST);
         if (!isUpdate && flightRepo.getFlight(id) != null) {
             return new Response("Ya existe un vuelo con ese ID.", Status.BAD_REQUEST);
         }
 
-        // === Validar ubicaciones ===
+        //Validar ubicaciones
         if (isNullOrEmpty(departureLocationId) || isNullOrEmpty(arrivalLocationId)) {
             return new Response("La ubicación de salida y llegada no pueden estar vacías.", Status.BAD_REQUEST);
         }
@@ -60,11 +44,11 @@ public class FlightValidator {
         Location arrival = locationRepo.getLocation(arrivalLocationId);
         if (arrival == null) return new Response("La ubicación de llegada no existe.", Status.BAD_REQUEST);
 
-        // === Validar avión ===
+        //Validar avión
         Plane plane = planeRepo.getPlane(planeId);
         if (plane == null) return new Response("El avión no existe.", Status.BAD_REQUEST);
 
-        // === Validar fecha y hora de salida ===
+        //Validar fecha y hora de salida 
         if (isNullOrEmpty(departureDateStr) || isNullOrEmpty(departureTimeStr)) {
             return new Response("La fecha y la hora de salida no pueden estar vacías.", Status.BAD_REQUEST);
         }
@@ -75,13 +59,13 @@ public class FlightValidator {
             departureDateTime = LocalDateTime.parse(departureDateStr + "T" + departureTimeStr, formatter);
 
             if (departureDateTime.isBefore(LocalDateTime.now())) {
-                return new Response("La fecha de salida debe ser futura o actual.", Status.BAD_REQUEST);
+                return new Response("La fecha de salida debe ser futura o actual, según la fecha.", Status.BAD_REQUEST);
             }
         } catch (DateTimeParseException e) {
-            return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm.", Status.BAD_REQUEST);
+            return new Response("Formato de fecha u hora inválido. Usa YYYY-MM-DD y HH:mm. Debe tener valores númericos.", Status.BAD_REQUEST);
         }
 
-        // === Validar duración llegada ===
+        // Validar duración llegada 
         int hoursArrival, minutesArrival;
         try {
             hoursArrival = Integer.parseInt(hoursArrivalStr);
@@ -96,7 +80,7 @@ public class FlightValidator {
             return new Response("La duración de llegada debe ser numérica.", Status.BAD_REQUEST);
         }
 
-        // === Validar escala ===
+        // Validar escala 
         boolean hasScale = !isNullOrEmpty(scaleLocationId) && !scaleLocationId.equalsIgnoreCase("None");
         Location scale = null;
         int hoursScale = 0, minutesScale = 0;
@@ -122,12 +106,12 @@ public class FlightValidator {
                 return new Response("La duración de la escala debe ser numérica.", Status.BAD_REQUEST);
             }
         } else {
-            // 🚀 Si no hay escala, forzar tiempo = 0
+            //Si no hay escala, forzar tiempo = 0
             hoursScale = 0;
             minutesScale = 0;
         }
 
-        // === Crear el vuelo usando el constructor correcto ===
+        //Crear el vuelo usando el constructor correcto 
         Flight flight;
         if (hasScale) {
             flight = new Flight(
@@ -161,7 +145,6 @@ public class FlightValidator {
         return s == null || s.trim().isEmpty();
     }
 
-    // === Delay Validator ===
     public static Response validateDelay(String flightId, String hoursStr, String minutesStr, FlightRepository repo) {
         if (isNullOrEmpty(flightId)) {
             return new Response("El ID del vuelo no puede estar vacío.", Status.BAD_REQUEST);

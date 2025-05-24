@@ -18,15 +18,15 @@ public class LocationRepository extends ObservableRepository {
     private  List<Location> locations= new ArrayList<>();
 
     public boolean addLocation(Location location) {
-    for (Location l : this.locations) {
-        if (l.getAirportId().equals(location.getAirportId())) {
-            return false;
+        for (Location l : this.locations) {
+            if (l.getAirportId().equals(location.getAirportId())) {
+                return false;
+            }
         }
+        this.locations.add(location);
+        notifyObservers(); 
+        return true;
     }
-    this.locations.add(location);
-    notifyObservers(); 
-    return true;
-}
 
     public Location getLocation(String id) {
         for (Location l : locations) {

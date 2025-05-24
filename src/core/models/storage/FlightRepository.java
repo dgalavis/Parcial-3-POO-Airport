@@ -18,15 +18,15 @@ public class FlightRepository extends ObservableRepository {
     private  List<Flight> flights= new ArrayList<>();
     
     public boolean addFlight(Flight flight) {
-    for (Flight f : this.flights) {
-        if (f.getId().equals(flight.getId())) {
-            return false;
+        for (Flight f : this.flights) {
+            if (f.getId().equals(flight.getId())) {
+                return false;
+            }
         }
+        this.flights.add(flight);
+        notifyObservers();
+        return true;
     }
-    this.flights.add(flight);
-    notifyObservers();
-    return true;
-}
 
     public Flight getFlight(String id) {
         for (Flight f : flights) {
@@ -57,21 +57,21 @@ public class FlightRepository extends ObservableRepository {
     }
 
     public List<Flight> getAllFlights() {
-    List<Flight> sortedList = new ArrayList<>();
+        List<Flight> sortedList = new ArrayList<>();
 
-    for (Flight f : flights) {
-        sortedList.add(f.clone());
-    }
-
-    // Ahora ordenamos por fecha de salida (departureDate)
-    Collections.sort(sortedList, new Comparator<Flight>() {
-        @Override
-        public int compare(Flight f1, Flight f2) {
-            return f1.getDepartureDate().compareTo(f2.getDepartureDate());
+        for (Flight f : flights) {
+            sortedList.add(f.clone());
         }
-    });
 
-    return sortedList;
+        // Ahora ordenamos por fecha de salida (departureDate)
+        Collections.sort(sortedList, new Comparator<Flight>() {
+            @Override
+            public int compare(Flight f1, Flight f2) {
+                return f1.getDepartureDate().compareTo(f2.getDepartureDate());
+            }
+        });
+
+        return sortedList;
 
     }       
 }

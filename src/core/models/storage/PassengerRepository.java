@@ -69,7 +69,8 @@ public class PassengerRepository extends ObservableRepository {
     Collections.sort(sortedList, new Comparator<Passenger>() {
         @Override
         public int compare(Passenger p1, Passenger p2) {
-           return Long.compare(p1.getId(), p2.getId());        }
+           return Long.compare(p1.getId(), p2.getId());        
+        }
     });
 
     return sortedList;

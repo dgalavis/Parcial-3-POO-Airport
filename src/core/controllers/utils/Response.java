@@ -4,8 +4,6 @@
  */
 package core.controllers.utils;
 
-import core.models.Location;
-
 /**
  *
  * @author lhaur

@@ -31,37 +31,10 @@ public class FlightController {
         this.planeRepo = planeRepo;
     }
 
-    public Response createFlight(
-        String id,
-        String departureLocationId,
-        String arrivalLocationId,
-        String departureDateStr,
-        String departureTimeStr,
-        String hoursArrivalStr,
-        String minutesArrivalStr,
-        String planeId,
-        String scaleLocationId,
-        String hoursScaleStr,
-        String minutesScaleStr
+    public Response createFlight(String id,String departureLocationId,String arrivalLocationId,String departureDateStr,String departureTimeStr,String hoursArrivalStr,String minutesArrivalStr,String planeId,String scaleLocationId,String hoursScaleStr,String minutesScaleStr
     ) {
         // Validar datos de entrada
-        Response validation = FlightValidator.parseAndValidate(
-            id,
-            departureLocationId,
-            arrivalLocationId,
-            departureDateStr,
-            departureTimeStr,
-            hoursArrivalStr,
-            minutesArrivalStr,
-            planeId,
-            scaleLocationId,
-            hoursScaleStr,
-            minutesScaleStr,
-            flightRepo,
-            locationRepo,
-            planeRepo,
-            false // No es actualización, es creación
-        );
+        Response validation = FlightValidator.parseAndValidate(id,departureLocationId,arrivalLocationId,departureDateStr,departureTimeStr,hoursArrivalStr,minutesArrivalStr,planeId,scaleLocationId,hoursScaleStr,minutesScaleStr,flightRepo,locationRepo,planeRepo,false );
 
         if (validation.getStatus() != Status.OK) {
             return validation;
@@ -100,8 +73,7 @@ public class FlightController {
         return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
 
-    public Response addPassengerToFlight(long passengerId, String flightId) {
-        PassengerRepository passengerRepo = AirportStorage.getInstance().getPassengerRepo();
+    public Response addPassengerToFlight(long passengerId, String flightId) {PassengerRepository passengerRepo = AirportStorage.getInstance().getPassengerRepo();
         Passenger passenger = passengerRepo.getPassengerRaw(passengerId);
 
         if (passenger == null) {

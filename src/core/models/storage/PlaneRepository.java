@@ -50,20 +50,20 @@ public class PlaneRepository extends ObservableRepository {
     }
     
     public List<Plane> getAllPlanes() {
-    List<Plane> sortedList = new ArrayList<>();
+        List<Plane> sortedList = new ArrayList<>();
 
- 
-    for (Plane p : planes) {
-        sortedList.add(p.clone());
-    }
 
-    // Ordenar por Id
-    Collections.sort(sortedList, new Comparator<Plane>() {        @Override
-        public int compare(Plane p1, Plane p2) {
-            return p1.getId().compareTo(p2.getId());       }
-    });
+        for (Plane p : planes) {
+            sortedList.add(p.clone());
+        }
 
-    return sortedList;
+        // Ordenar por Id
+        Collections.sort(sortedList, new Comparator<Plane>() {        @Override
+            public int compare(Plane p1, Plane p2) {
+                return p1.getId().compareTo(p2.getId());       }
+        });
+
+        return sortedList;
     }
     
     
