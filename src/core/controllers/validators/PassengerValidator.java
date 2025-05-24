@@ -17,9 +17,7 @@ import java.time.format.DateTimeParseException;
  * @author galav
  */
     public class PassengerValidator {
-        public static Response parseAndValidate(String idStr, String firstname, String lastname,
-                                            String birthStr, String phoneCodeStr, String phoneStr,
-                                            String country, PassengerRepository repo, boolean isUpdate) {
+        public static Response parseAndValidate(String idStr, String firstname, String lastname,String birthStr, String phoneCodeStr, String phoneStr,String country, PassengerRepository repo, boolean isUpdate) {
         // Validar que los campos requeridos no estén vacíos
         if (isNullOrEmpty(idStr)) {
             return new Response("El ID no puede estar vacío.", Status.BAD_REQUEST);
@@ -43,7 +41,7 @@ import java.time.format.DateTimeParseException;
             return new Response("El país no puede estar vacío.", Status.BAD_REQUEST);
         }
 
-        // Ahora sí hacemos los parseos y validaciones numéricas
+        // parse y validaciones numéricas
         long id;
         int phoneCode;
         long phone;
@@ -87,7 +85,7 @@ import java.time.format.DateTimeParseException;
             return new Response("El teléfono debe ser numérico.", Status.BAD_REQUEST);
         }
 
-        // Si todo es válido, creamos el objeto
+        // Si todo es válid se crea el objeto
         Passenger passenger = new Passenger(id, firstname, lastname, birthDate, phoneCode, phone, country);
         return new Response("Validación exitosa", Status.OK, passenger);
     }

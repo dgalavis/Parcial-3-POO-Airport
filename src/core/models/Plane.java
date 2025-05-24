@@ -71,9 +71,9 @@ public class Plane implements CloneableModel<Plane>, AddFlights {
             this.airline
         );
 
-        // Copiar las referencias de vuelos (no deep clone para evitar ciclos)
+        
         for (Flight f : this.flights) {
-            copy.addFlight(f); // O usa f.clone() si sabes que es seguro
+            copy.addFlight(f); 
         }
 
         return copy;

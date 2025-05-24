@@ -17,9 +17,6 @@ import java.util.List;
 public class PlaneRepository extends ObservableRepository {
      private  List<Plane> planes= new ArrayList<>();
      
-        // =====================================
-    // MÉTODOS PARA PLANES
-    // =====================================
     
     public boolean addPlane(Plane plane) {
         for (Plane p : this.planes) {
@@ -27,7 +24,7 @@ public class PlaneRepository extends ObservableRepository {
                 return false;
             }
         }
-       // notifyObservers(); // Notifica a la vista
+       
         this.planes.add(plane);
          notifyObservers(); 
         return true;
@@ -51,16 +48,16 @@ public class PlaneRepository extends ObservableRepository {
         }
         return false;
     }
-    //DEVUELVE LA LISTA DE PLANES ORDENADA POR ID
+    
     public List<Plane> getAllPlanes() {
     List<Plane> sortedList = new ArrayList<>();
 
-    // Clonar todos los pasajeros
+ 
     for (Plane p : planes) {
         sortedList.add(p.clone());
     }
 
-    // Ordenar por ID usando Comparator
+    // Ordenar por Id
     Collections.sort(sortedList, new Comparator<Plane>() {        @Override
         public int compare(Plane p1, Plane p2) {
             return p1.getId().compareTo(p2.getId());       }

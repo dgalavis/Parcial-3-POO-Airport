@@ -23,16 +23,9 @@ import java.util.List;
  * Almacena listas de pasajeros, vuelos, aviones y localizaciones.
  */
 public class AirportStorage {
-    /*Singleton: única instancia garantiza que toda la aplicación utlice
-    el mismo repositorio de datos
-    */
+    //Se usa singleton, única instancia garantiza que toda la aplicación utliceel mismo repositorio de datos
     private static AirportStorage instance;
-    
-    /*Devuelve una única instancia de AirportStorage
-    Si no existe la crea ->> es la unica forma de obtner
-    una instancia de airport storgae como tipo para acceder 
-    a una base de datos
-    */
+   
     public static AirportStorage getInstance (){
         if (instance == null){
             instance = new AirportStorage();

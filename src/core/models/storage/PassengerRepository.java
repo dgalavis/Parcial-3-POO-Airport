@@ -19,9 +19,6 @@ public class PassengerRepository extends ObservableRepository {
     
     private  List<Passenger> passengers= new ArrayList<>();
      
-    // =====================================
-    // MÉTODOS PARA PASAJEROS
-    // =====================================
     
     public boolean addPassenger(Passenger passenger) {
         for (Passenger p : this.passengers) {
@@ -29,16 +26,16 @@ public class PassengerRepository extends ObservableRepository {
                 return false;
             }
         }
-        //notifyObservers(); // Notifica a la vista
+        
         this.passengers.add(passenger);
-         notifyObservers(); // Notifica a la vista
+         notifyObservers(); 
         return true;
     }
     
    
     public Passenger getPassengerRaw(Long id) {
         for (Passenger p : passengers) {
-            if (p.getId() == id) return p; // Referencia real
+            if (p.getId() == id) return p; 
         }
         return null;
     }
@@ -46,7 +43,7 @@ public class PassengerRepository extends ObservableRepository {
 
     public Passenger getPassenger(Long id) {
         for (Passenger p : passengers) {
-            if (p.getId() == id) return p.clone(); // Patrón Prototype
+            if (p.getId() == id) return p.clone(); 
         }
         return null;
     }
@@ -64,12 +61,11 @@ public class PassengerRepository extends ObservableRepository {
     public List<Passenger> getAllPassengers() {
     List<Passenger> sortedList = new ArrayList<>();
 
-    // Clonar todos los pasajeros
     for (Passenger p : passengers) {
         sortedList.add(p.clone());
     }
 
-    // Ordenar por ID usando Comparator
+    // Ordenar por ID 
     Collections.sort(sortedList, new Comparator<Passenger>() {
         @Override
         public int compare(Passenger p1, Passenger p2) {
@@ -83,7 +79,7 @@ public class PassengerRepository extends ObservableRepository {
     for (int i = 0; i < passengers.size(); i++) {
         if (passengers.get(i).getId() == updated.getId()) {
             passengers.set(i, updated);
-            notifyObservers(); // Notifica a la vista
+            notifyObservers(); 
             return true;
         }
     }

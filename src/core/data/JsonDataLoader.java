@@ -34,18 +34,18 @@ public class JsonDataLoader {
 
     private void loadLocations()  {
         try {
-            // Ruta absoluta o relativa al archivo JSON
+            
             FileReader reader = new FileReader("json/locations.json");
 
-            // Leer el archivo y parsear como JSON
+          
             JSONArray array = new JSONArray(new JSONTokener(reader));
 
-            // Recorrer el array e instanciar los objetos Location
+           
             for (int i = 0; i < array.length(); i++) {
                 JSONObject obj = array.getJSONObject(i);
 
                 Location loc = new Location(
-                    obj.getString("airportId"),        // ← Verifica si esto es un typo (debería ser "airportId")
+                    obj.getString("airportId"),       
                     obj.getString("airportName"),
                     obj.getString("airportCity"),
                     obj.getString("airportCountry"),
@@ -65,7 +65,6 @@ public class JsonDataLoader {
         
     }
 
-     //@SuppressWarnings("empty-statement")
    private void loadPlanes() {
     try {
         FileReader reader = new FileReader("json/planes.json");

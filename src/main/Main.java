@@ -4,37 +4,32 @@
  */
 package main;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import core.data.JsonDataLoader;
 import core.models.Flight;
 import core.models.Plane;
 import core.models.storage.AirportStorage;
+import core.view.AirportFrame;
+import javax.swing.UIManager;
 
 /**
  *
  * @author galav
  */
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("hola");
-        // Cargar datos desde JSON
-        JsonDataLoader loader = new JsonDataLoader();
-        loader.loadAllData();
+     public static void main(String args[]) {
+        System.setProperty("flatlaf.useNativeLibrary", "false");
 
-        // Obtener el almacenamiento
-        AirportStorage storage = AirportStorage.getInstance();
-
-        // ✅ Imprimir algunos datos de prueba
-        System.out.println("=== Aviones cargados ===");
-        for (Plane p : storage.getPlaneRepo().getAllPlanes()) {
-            System.out.println("ID: " + p.getId() + ", Marca: " + p.getBrand());
-            System.out.println("Vuelos asignados: " + p.getFlights().size());
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
         }
-
-        System.out.println("\n=== Vuelos cargados ===");
-        for (Flight f : storage.getFlightRepository().getAllFlights()) {
-            System.out.println("Vuelo: " + f.getId() + ", Avión: " + f.getPlane().getId());
-            System.out.println("Desde: " + f.getDepartureLocation().getAirportId() +
-                               " → Hacia: " + f.getArrivalLocation().getAirportId());
-        }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AirportFrame().setVisible(true);
+            }
+        });
     }
 }

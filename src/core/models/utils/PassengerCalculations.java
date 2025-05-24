@@ -18,6 +18,6 @@ public class PassengerCalculations {
     }
 
     public static int getNumFlights(Passenger p) {
-        return p.getFlights().size(); // hoy es simple, pero puede cambiar
+        return p.getFlights().size();
     }
 }
