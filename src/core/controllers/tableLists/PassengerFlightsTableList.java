@@ -32,7 +32,6 @@ public class PassengerFlightsTableList {
 
             List<Flight> flights = passenger.getFlights();
             if (flights == null || flights.isEmpty()) {
-                // Retornar NO_CONTENT con mensaje informativo si no tiene vuelos
                 return new Response("El pasajero no tiene vuelos asignados.", Status.NO_CONTENT);
             }
 

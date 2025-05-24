@@ -22,7 +22,6 @@ public class PassengerTableList {
         try {
             model.setRowCount(0);
 
-            // Esta lista ya viene clonada y ordenada por ID
             List<Passenger> passengers = AirportStorage.getInstance().getPassengerRepo().getAllPassengers();
 
             if (passengers.isEmpty()) {
@@ -31,13 +30,13 @@ public class PassengerTableList {
 
             for (Passenger p : passengers) {
                 model.addRow(new Object[]{
-                    p.getId(), // ID
-                    PassengerFormatter.getFullname(p), // Nombre completo
-                    p.getBirthDate(), // Fecha de nacimiento
-                    PassengerCalculations.calculateAge(p), // Edad
-                    PassengerFormatter.generateFullPhone(p), // Teléfono
-                    p.getCountry(), // País
-                    PassengerCalculations.getNumFlights(p) // Número de vuelos
+                    p.getId(), 
+                    PassengerFormatter.getFullname(p), 
+                    p.getBirthDate(), 
+                    PassengerCalculations.calculateAge(p),
+                    PassengerFormatter.generateFullPhone(p), 
+                    p.getCountry(), 
+                    PassengerCalculations.getNumFlights(p) 
                 });
             }
 

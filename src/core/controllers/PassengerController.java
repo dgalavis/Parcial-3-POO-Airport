@@ -65,14 +65,14 @@ public class PassengerController {
        
         return new Response("Pasajero actualizado exitosamente.", Status.OK);
     }
-    
+    //Obtiene todos los vuelos de un pajero en especificio
     public static List<Flight> getFlightsByPassengerId(long passengerId) {
         PassengerRepository repo = AirportStorage.getInstance().getPassengerRepo();
         Passenger passenger = repo.getPassenger(passengerId);
         if (passenger != null) {
-            return passenger.getFlights(); // asumo que tienes un getter que devuelve List<Flight>
+            return passenger.getFlights(); 
         }
-        return Collections.emptyList(); // si no existe pasajero, retorna lista vacía
+        return Collections.emptyList();
     }
     
 }

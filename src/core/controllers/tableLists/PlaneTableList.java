@@ -34,7 +34,7 @@ public class PlaneTableList {
                     p.getModel(),
                     p.getMaxCapacity(),
                     p.getAirline(),
-                    p.getFlights().size() // Número de vuelos asociados
+                    p.getFlights().size() 
                 });
             }
 
