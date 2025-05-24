@@ -22,18 +22,12 @@ import java.util.List;
  */
 public class PassengerController {
   
-   public static Response registerPassenger(String idStr, String firstname, String lastname,
-                                             String birthStr, String phoneCodeStr, String phoneStr,
-                                             String country) {
+   public static Response registerPassenger(String idStr, String firstname, String lastname,String birthStr, String phoneCodeStr, String phoneStr, String country) {
         PassengerRepository repo = AirportStorage.getInstance().getPassengerRepo();
 
         // Validar y parsear todos los datos de entrada
-        Response response = PassengerValidator.parseAndValidate(
-                idStr, firstname, lastname, birthStr,
-                phoneCodeStr, phoneStr, country,
-                repo, false // false porque es registro, no actualización
-        );
-
+        Response response = PassengerValidator.parseAndValidate(idStr, firstname, lastname, birthStr, phoneCodeStr, phoneStr, country,repo, false);
+        
         if (response.getStatus() != Status.OK) return response;
 
         // Extraer pasajero ya validado y parseado
@@ -52,11 +46,7 @@ public class PassengerController {
         PassengerRepository repo = AirportStorage.getInstance().getPassengerRepo();
 
         // Validar y parsear los datos (en modo actualización)
-        Response response = PassengerValidator.parseAndValidate(
-                idStr, firstname, lastname, birthStr,
-                phoneCodeStr, phoneStr, country,
-                repo, true // true porque es actualización
-        );
+        Response response = PassengerValidator.parseAndValidate(idStr, firstname, lastname, birthStr,phoneCodeStr, phoneStr, country,repo, true );
 
         if (response.getStatus() != Status.OK) return response;
 

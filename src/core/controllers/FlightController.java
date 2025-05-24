@@ -30,19 +30,7 @@ public class FlightController {
         this.planeRepo = planeRepo;
     }
 
-    public Response createFlight(
-        String id,
-        String departureLocationId,
-        String arrivalLocationId,
-        String departureDateStr,
-        String departureTimeStr,
-        String hoursArrivalStr,
-        String minutesArrivalStr,
-        String planeId,
-        String scaleLocationId,
-        String hoursScaleStr,
-        String minutesScaleStr
-    ) {
+    public Response createFlight(String id, String departureLocationId, String arrivalLocationId, String departureDateStr, String departureTimeStr, String hoursArrivalStr, String minutesArrivalStr, String planeId,  String scaleLocationId,  String hoursScaleStr, String minutesScaleStr) {
         // Validar datos de entrada
         Response validation = FlightValidator.parseAndValidate(
             id,
@@ -95,11 +83,9 @@ public class FlightController {
         if (flight == null) {
             return new Response("Vuelo no encontrado para retrasar.", Status.NOT_FOUND);
         }
-        //eliminar los println
-        System.out.println("ANTES de delay: " + flight.getDepartureDate());
+        
         flight.setDepartureDate(flight.getDepartureDate().plusHours(hours).plusMinutes(minutes));
-        System.out.println("DESPUÉS de delay: " + flight.getDepartureDate());
-
+        
         return new Response("Vuelo retrasado correctamente.", Status.OK, flight.clone());
     }
     
