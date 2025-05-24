@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author galav
  */
-public class PlaneRepository {
+public class PlaneRepository extends ObservableRepository {
      private  List<Plane> planes= new ArrayList<>();
      
         // =====================================
@@ -27,7 +27,9 @@ public class PlaneRepository {
                 return false;
             }
         }
+       // notifyObservers(); // Notifica a la vista
         this.planes.add(plane);
+         notifyObservers(); 
         return true;
     }
     

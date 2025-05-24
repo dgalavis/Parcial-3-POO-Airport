@@ -18,6 +18,7 @@ import core.controllers.tableLists.LocationTableList;
 import core.controllers.tableLists.PassengerFlightsTableList;
 import core.controllers.tableLists.PassengerTableList;
 import core.controllers.tableLists.PlaneTableList;
+import core.controllers.tableLists.TableRefresherObserver;
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
 import core.data.ComboLoader;
@@ -27,6 +28,7 @@ import core.models.utils.FlightCalculations;
 import core.models.storage.AirportStorage;
 import core.models.storage.FlightRepository;
 import core.models.storage.LocationRepository;
+import core.models.storage.PassengerRepository;
 import core.models.storage.PlaneRepository;
 import core.models.utils.PassengerCalculations;
 import core.models.utils.PassengerFormatter;
@@ -58,6 +60,8 @@ public class AirportFrame extends javax.swing.JFrame {
     private FlightRepository flightRepo;
     private LocationRepository locationRepo;
     private PlaneRepository planeRepo;
+    private PassengerRepository passengerRepo ;
+
 
     FlightCalculations calculator = new FlightCalculations();
     PlaneCalculations planeCalculator = new PlaneCalculations();
@@ -72,7 +76,8 @@ public class AirportFrame extends javax.swing.JFrame {
         this.flightRepo = AirportStorage.getInstance().getFlightRepository();
         this.planeRepo = AirportStorage.getInstance().getPlaneRepo();
         this.locationRepo = AirportStorage.getInstance().getLocationRepository();
-        
+        this.passengerRepo = AirportStorage.getInstance().getPassengerRepo();
+       
         this.passengers = new ArrayList<>();
         this.planes = new ArrayList<>();
         this.locations = new ArrayList<>();
@@ -94,7 +99,18 @@ public class AirportFrame extends javax.swing.JFrame {
         ComboLoader.cargarComboLocation(ArrivalLocationSelect);
         ComboLoader.cargarComboLocation(ScaleLocationSelect);
         ComboLoader.cargarFlight(idFlightPassenger);
-  
+        TableRefresherObserver observerPassenger = new TableRefresherObserver(() -> {
+        PassengerTableList.updatePassengersList((DefaultTableModel) passengerTable.getModel());
+        });
+        passengerRepo.addObserver(observerPassenger);
+        TableRefresherObserver observerPlane = new TableRefresherObserver(() -> {
+        PlaneTableList.updatePlanesList((DefaultTableModel) planeTable.getModel());
+        });
+        planeRepo.addObserver(observerPlane);
+        TableRefresherObserver observerLocation = new TableRefresherObserver(() -> {
+        LocationTableList.updateLocationsList((DefaultTableModel) locationTable.getModel());
+        });
+        locationRepo.addObserver(observerLocation);
     }
     
     private void blockPanels() {
@@ -277,7 +293,7 @@ public class AirportFrame extends javax.swing.JFrame {
         planeTable = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        LocationTable = new javax.swing.JTable();
+        locationTable = new javax.swing.JTable();
         RefreshLocationButtom = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         hoursDelay = new javax.swing.JComboBox<>();
@@ -470,7 +486,7 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel11.setText("ID:");
         jPanel3.add(jLabel11);
-        jLabel11.setBounds(53, 96, 21, 25);
+        jLabel11.setBounds(53, 96, 22, 25);
 
         IdPlaneTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jPanel3.add(IdPlaneTextField);
@@ -479,7 +495,7 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel12.setText("Brand:");
         jPanel3.add(jLabel12);
-        jLabel12.setBounds(53, 157, 50, 25);
+        jLabel12.setBounds(53, 157, 52, 25);
 
         BrandPlaneTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jPanel3.add(BrandPlaneTextField);
@@ -492,7 +508,7 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel13.setText("Model:");
         jPanel3.add(jLabel13);
-        jLabel13.setBounds(53, 216, 55, 25);
+        jLabel13.setBounds(53, 216, 57, 25);
 
         PlaneCapacityTextField11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jPanel3.add(PlaneCapacityTextField11);
@@ -501,7 +517,7 @@ public class AirportFrame extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jLabel14.setText("Max Capacity:");
         jPanel3.add(jLabel14);
-        jLabel14.setBounds(53, 276, 110, 25);
+        jLabel14.setBounds(53, 276, 114, 25);
 
         PlaneAirlinejTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         jPanel3.add(PlaneAirlinejTextField);
@@ -1328,7 +1344,7 @@ public class AirportFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Show all planes", jPanel10);
 
-        LocationTable.setModel(new javax.swing.table.DefaultTableModel(
+        locationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1351,7 +1367,7 @@ public class AirportFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(LocationTable);
+        jScrollPane5.setViewportView(locationTable);
 
         RefreshLocationButtom.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         RefreshLocationButtom.setText("Refresh");
@@ -1841,7 +1857,7 @@ public class AirportFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RefreshPlaneButtomActionPerformed
 
     private void RefreshLocationButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshLocationButtomActionPerformed
-        Response r = LocationTableList.updateLocationsList((DefaultTableModel) LocationTable.getModel());
+        Response r = LocationTableList.updateLocationsList((DefaultTableModel) locationTable.getModel());
 
         if (r.getStatus() >= 500) {
             JOptionPane.showMessageDialog(this, r.getMessage(), "Error " + r.getStatus(), JOptionPane.ERROR_MESSAGE);
@@ -1952,7 +1968,6 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JTextField IdUpdateTextField;
     private javax.swing.JTextField LastNameRegistrationTextField;
     private javax.swing.JTextField LastNameUpdateTextField;
-    private javax.swing.JTable LocationTable;
     private javax.swing.JComboBox<String> MONTH;
     private javax.swing.JComboBox<String> MONTH1;
     private javax.swing.JComboBox<String> MONTH2;
@@ -2060,6 +2075,7 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField latitudeAirport;
+    private javax.swing.JTable locationTable;
     private javax.swing.JTextField longitudeAirport;
     private javax.swing.JComboBox<String> minutesDelay;
     private javax.swing.JTextField nameAirport;

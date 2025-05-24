@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author galav
  */
-public class LocationRepository {
+public class LocationRepository extends ObservableRepository {
     private  List<Location> locations= new ArrayList<>();
 
     public boolean addLocation(Location location) {
@@ -24,6 +24,7 @@ public class LocationRepository {
         }
     }
     this.locations.add(location);
+    notifyObservers(); 
     return true;
 }
 

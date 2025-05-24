@@ -29,7 +29,7 @@ public class PlaneController {
     if (!added) {
         return new Response("No se pudo registrar el avión.", Status.INTERNAL_SERVER_ERROR);
     }
-
+    
     return new Response("Avión registrado exitosamente.", Status.CREATED);
 }
 

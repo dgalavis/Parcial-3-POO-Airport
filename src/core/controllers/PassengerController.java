@@ -44,7 +44,7 @@ public class PassengerController {
         if (!added) {
             return new Response("No se pudo registrar el pasajero (ID duplicado).", Status.BAD_REQUEST);
         }
-
+       
         return new Response("Pasajero registrado exitosamente.", Status.CREATED);
     }
    // NUEVO: método para actualizar pasajero
@@ -72,7 +72,7 @@ public class PassengerController {
         if (!updated) {
             return new Response("No se pudo actualizar el pasajero.", Status.INTERNAL_SERVER_ERROR);
         }
-
+       
         return new Response("Pasajero actualizado exitosamente.", Status.OK);
     }
     

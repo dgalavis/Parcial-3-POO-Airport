@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author galav
  */
-public class FlightRepository {
+public class FlightRepository extends ObservableRepository {
     private  List<Flight> flights= new ArrayList<>();
     
     public boolean addFlight(Flight flight) {

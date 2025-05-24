@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/validators/FlightValidator.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/PassengerController.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/PassengerFlightsTableList.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/storage/PassengerRepository.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/utils/PassengerCalculations.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/Passenger.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/storage/FlightRepository.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/storage/ObservableRepository.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/storage/AirportStorage.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/interfaces/CloneableModel.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/data/ComboLoader.java</file>
@@ -21,6 +23,8 @@
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/view/AirportFrame.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/LocationTableList.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/view/PanelRound.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/tableLists/TableRefresherObserver.java</file>
+            <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/interfaces/Observer.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/controllers/validators/LocationValidator.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/storage/PlaneRepository.java</file>
             <file>file:/C:/Users/galav/Documents/POO/Parcial-3-POO-Airport/src/core/models/utils/FlightDelay.java</file>

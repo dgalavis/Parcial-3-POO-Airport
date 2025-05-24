@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author galav
  */
-public class PassengerRepository {
+public class PassengerRepository extends ObservableRepository {
     
     private  List<Passenger> passengers= new ArrayList<>();
      
@@ -28,7 +28,9 @@ public class PassengerRepository {
                 return false;
             }
         }
+        //notifyObservers(); // Notifica a la vista
         this.passengers.add(passenger);
+         notifyObservers(); // Notifica a la vista
         return true;
     }
     
@@ -79,6 +81,7 @@ public class PassengerRepository {
     for (int i = 0; i < passengers.size(); i++) {
         if (passengers.get(i).getId() == updated.getId()) {
             passengers.set(i, updated);
+            notifyObservers(); // Notifica a la vista
             return true;
         }
     }
