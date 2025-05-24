@@ -20,11 +20,12 @@ import javax.swing.table.DefaultTableModel;
  * @author lhaur
  */
 public class PassengerFlightsTableList {
-    public static Response updatePassengerFlightsList(DefaultTableModel model, long passengerId) {
+    public static Response updatePassengerFlightsList(DefaultTableModel model, String passengerId) {
     try {
             model.setRowCount(0);
+            long Id = Long.parseLong(passengerId);
 
-            Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(passengerId);
+            Passenger passenger = AirportStorage.getInstance().getPassengerRepo().getPassenger(Id);
             if (passenger == null) {
                 return new Response("Pasajero no encontrado.", Status.NOT_FOUND);
             }

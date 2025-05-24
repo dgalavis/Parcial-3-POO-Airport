@@ -4,6 +4,7 @@
  */
 package core.models.storage;
 
+import core.models.Flight;
 import core.models.Passenger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +42,7 @@ public class PassengerRepository extends ObservableRepository {
         }
         return null;
     }
+    
 
     public Passenger getPassenger(Long id) {
         for (Passenger p : passengers) {

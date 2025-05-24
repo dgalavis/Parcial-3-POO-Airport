@@ -24,6 +24,7 @@ public class FlightRepository extends ObservableRepository {
         }
     }
     this.flights.add(flight);
+    notifyObservers();
     return true;
 }
 
