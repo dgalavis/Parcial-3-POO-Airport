@@ -496,7 +496,7 @@ public class AirportFrame extends javax.swing.JFrame {
         idPlaneLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         idPlaneLabel.setText("ID:");
         PlaneRegistrationPanel.add(idPlaneLabel);
-        idPlaneLabel.setBounds(53, 96, 22, 25);
+        idPlaneLabel.setBounds(53, 96, 21, 25);
 
         IdPlaneTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         PlaneRegistrationPanel.add(IdPlaneTextField);
@@ -505,7 +505,7 @@ public class AirportFrame extends javax.swing.JFrame {
         BrandLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         BrandLabel.setText("Brand:");
         PlaneRegistrationPanel.add(BrandLabel);
-        BrandLabel.setBounds(53, 157, 52, 25);
+        BrandLabel.setBounds(53, 157, 50, 25);
 
         BrandPlaneTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         PlaneRegistrationPanel.add(BrandPlaneTextField);
@@ -518,7 +518,7 @@ public class AirportFrame extends javax.swing.JFrame {
         ModelLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         ModelLabel.setText("Model:");
         PlaneRegistrationPanel.add(ModelLabel);
-        ModelLabel.setBounds(53, 216, 57, 25);
+        ModelLabel.setBounds(53, 216, 55, 25);
 
         PlaneCapacityTextField11.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         PlaneRegistrationPanel.add(PlaneCapacityTextField11);
@@ -527,7 +527,7 @@ public class AirportFrame extends javax.swing.JFrame {
         CapacityLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         CapacityLabel.setText("Max Capacity:");
         PlaneRegistrationPanel.add(CapacityLabel);
-        CapacityLabel.setBounds(53, 276, 114, 25);
+        CapacityLabel.setBounds(53, 276, 110, 25);
 
         PlaneAirlinejTextField.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         PlaneRegistrationPanel.add(PlaneAirlinejTextField);

@@ -106,21 +106,27 @@ public class FlightValidator {
                 return new Response("La duración de la escala debe ser numérica.", Status.BAD_REQUEST);
             }
         } else {
-            //Si no hay escala, forzar tiempo = 0
-            hoursScale = 0;
-            minutesScale = 0;
+            if (!isNullOrEmpty(hoursScaleStr) || !isNullOrEmpty(minutesScaleStr)) {
+                try {
+                    hoursScale = Integer.parseInt(hoursScaleStr);
+                    minutesScale = Integer.parseInt(minutesScaleStr);
+                    if (hoursScale != 0 || minutesScale != 0) {
+                        return new Response("Si no hay escala seleccionada, las horas y minutos deben ser 0.", Status.BAD_REQUEST);
+                    }
+                } catch (NumberFormatException e) {
+                    return new Response("Si no hay escala seleccionada, las horas y minutos deben ser 0.", Status.BAD_REQUEST);
+        }
+    }
+    // Forzar igual a cero para crear el objeto limpio
+    hoursScale = 0;
+    minutesScale = 0;
         }
 
         //Crear el vuelo usando el constructor correcto 
         Flight flight;
         if (hasScale) {
             flight = new Flight(
-                id,
-                plane,
-                departure,
-                scale,
-                arrival,
-                departureDateTime,
+               id,plane,departure,scale,arrival,departureDateTime,
                 hoursArrival,
                 minutesArrival,
                 hoursScale,
