@@ -115,13 +115,12 @@ public class FlightValidator {
                     }
                 } catch (NumberFormatException e) {
                     return new Response("Si no hay escala seleccionada, las horas y minutos deben ser 0.", Status.BAD_REQUEST);
-        }
-    }
-    // Forzar igual a cero para crear el objeto limpio
-    hoursScale = 0;
-    minutesScale = 0;
-        }
-
+                }
+            }
+            // Forzar igual a cero para crear el objeto limpio
+            hoursScale = 0;
+            minutesScale = 0;
+            }
         //Crear el vuelo usando el constructor correcto 
         Flight flight;
         if (hasScale) {
