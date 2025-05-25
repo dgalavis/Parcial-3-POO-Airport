@@ -120,7 +120,7 @@ public class FlightValidator {
             // Forzar igual a cero para crear el objeto limpio
             hoursScale = 0;
             minutesScale = 0;
-            }
+        }
         //Crear el vuelo usando el constructor correcto 
         Flight flight;
         if (hasScale) {
