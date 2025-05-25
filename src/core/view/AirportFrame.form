@@ -2134,7 +2134,7 @@
                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="hoursDelay" pref="151" max="32767" attributes="0"/>
-                                      <Component id="idFlight" max="32767" attributes="0"/>
+                                      <Component id="idPlane" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -2153,7 +2153,7 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="IdFlightLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="idFlight" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="idPlane" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -2204,7 +2204,7 @@
                     <Property name="text" type="java.lang.String" value="ID:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="idFlight">
+                <Component class="javax.swing.JComboBox" name="idPlane">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="18" style="0"/>
@@ -2216,7 +2216,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idFlightActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idPlaneActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

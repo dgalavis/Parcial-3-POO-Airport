@@ -94,7 +94,7 @@ public class AirportFrame extends javax.swing.JFrame {
         loader.loadAllData();
         ComboLoader.cargarPasajeros(userSelect);
         ComboLoader.cargarAviones(planeSelect);
-        ComboLoader.cargarFlight(idFlight);
+        ComboLoader.cargarFlight(idPlane);
         ComboLoader.cargarComboLocation(DepartureLocationSelect);
         ComboLoader.cargarComboLocation(ArrivalLocationSelect);
         ComboLoader.cargarComboLocation(ScaleComboBox);
@@ -309,7 +309,7 @@ public class AirportFrame extends javax.swing.JFrame {
         hoursDelay = new javax.swing.JComboBox<>();
         HourLabel = new javax.swing.JLabel();
         IdFlightLabel = new javax.swing.JLabel();
-        idFlight = new javax.swing.JComboBox<>();
+        idPlane = new javax.swing.JComboBox<>();
         MinuteLabel = new javax.swing.JLabel();
         minutesDelay = new javax.swing.JComboBox<>();
         DelayButtom = new javax.swing.JButton();
@@ -1422,11 +1422,11 @@ public class AirportFrame extends javax.swing.JFrame {
         IdFlightLabel.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         IdFlightLabel.setText("ID:");
 
-        idFlight.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        idFlight.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID" }));
-        idFlight.addActionListener(new java.awt.event.ActionListener() {
+        idPlane.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        idPlane.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID" }));
+        idPlane.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idFlightActionPerformed(evt);
+                idPlaneActionPerformed(evt);
             }
         });
 
@@ -1462,7 +1462,7 @@ public class AirportFrame extends javax.swing.JFrame {
                         .addGap(79, 79, 79)
                         .addGroup(DelayFlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hoursDelay, 0, 151, Short.MAX_VALUE)
-                            .addComponent(idFlight, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(idPlane, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(820, 820, 820))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DelayFlightPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1475,7 +1475,7 @@ public class AirportFrame extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(DelayFlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IdFlightLabel)
-                    .addComponent(idFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idPlane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(DelayFlightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(HourLabel)
@@ -1707,7 +1707,7 @@ public class AirportFrame extends javax.swing.JFrame {
             DAY3.setSelectedIndex(0);
             HourScale.setSelectedIndex(0);
             MinuteScale.setSelectedIndex(0);
-            idFlight.addItem(id);
+            idPlane.addItem(id);
             idFlightPassenger.addItem(id);
             
     }
@@ -1775,7 +1775,7 @@ public class AirportFrame extends javax.swing.JFrame {
 
     private void DelayButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelayButtomActionPerformed
         // Obtener datos del formulario
-    String flightId = idFlight.getItemAt(idFlight.getSelectedIndex());
+    String flightId = idPlane.getItemAt(idPlane.getSelectedIndex());
     String hoursStr = hoursDelay.getItemAt(hoursDelay.getSelectedIndex());
     String minutesStr = minutesDelay.getItemAt(minutesDelay.getSelectedIndex());
 
@@ -1797,7 +1797,7 @@ public class AirportFrame extends javax.swing.JFrame {
         FlightTableList.updateFlightsList(model);
 
         // Resetear combos
-        idFlight.setSelectedIndex(0);
+        idPlane.setSelectedIndex(0);
         hoursDelay.setSelectedIndex(0);
         minutesDelay.setSelectedIndex(0);
     }
@@ -1901,11 +1901,11 @@ public class AirportFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DepartureLocationSelectActionPerformed
 
-    private void idFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFlightActionPerformed
+    private void idPlaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idPlaneActionPerformed
         // ID VUELO
-        String id = idFlight.getSelectedItem().toString();
+        String id = idPlane.getSelectedItem().toString();
             
-    }//GEN-LAST:event_idFlightActionPerformed
+    }//GEN-LAST:event_idPlaneActionPerformed
 
     private void userSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSelectActionPerformed
         try {
@@ -2027,13 +2027,13 @@ public class AirportFrame extends javax.swing.JFrame {
     private javax.swing.JButton createPlanejButton;
     private javax.swing.JTable flightTable;
     private javax.swing.JComboBox<String> hoursDelay;
-    private javax.swing.JComboBox<String> idFlight;
     private javax.swing.JLabel idFlightLabel;
     private javax.swing.JComboBox<String> idFlightPassenger;
     private javax.swing.JTextField idFlightTextField;
     private javax.swing.JLabel idFlightUserAddLabel;
     private javax.swing.JLabel idPasseneerRegisterLabel;
     private javax.swing.JTextField idPassengerFlightText;
+    private javax.swing.JComboBox<String> idPlane;
     private javax.swing.JLabel idPlaneLabel;
     private javax.swing.JButton jButton13;
     private javax.swing.JLabel jLabel10;
