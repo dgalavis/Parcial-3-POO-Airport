@@ -37,6 +37,21 @@ public class LocationValidator {
         } catch (NumberFormatException e) {
             return new Response("La latitud debe ser numérica.", Status.BAD_REQUEST);
         }
+        
+        //Validar  nombre aeropuerto
+        if (!name.matches("[\\p{L} ]+")) {
+            return new Response("El nombre del aeropuerto solo puede contener letras.", Status.BAD_REQUEST);
+        }
+        
+        //Validar nombre ciudad
+        if (!city.matches("[\\p{L} ]+")) {
+            return new Response("El nombre de la ciudad solo puede contener letras.", Status.BAD_REQUEST);
+        }
+        
+        //Validar nombre país
+        if (!country.matches("[\\p{L} ]+")) {
+            return new Response("El nombre del país solo puede contener letras.", Status.BAD_REQUEST);
+        }
 
         // Validación de longitud
         double longitude;
