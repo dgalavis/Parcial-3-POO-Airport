@@ -40,6 +40,16 @@ import java.time.format.DateTimeParseException;
         if (isNullOrEmpty(country)) {
             return new Response("El país no puede estar vacío.", Status.BAD_REQUEST);
         }
+        
+        if (!country.matches("[\\p{L} ]+")) {
+            return new Response("El país solo puede contener letras.", Status.BAD_REQUEST);
+        }
+        if (!lastname.matches("[\\p{L} ]+")) {
+            return new Response("El apellido solo puede contener letras.", Status.BAD_REQUEST);
+        }
+        if (!firstname.matches("[\\p{L} ]+")) {
+            return new Response("El nombre solo puede contener letras.", Status.BAD_REQUEST);
+        }
 
         // parse y validaciones numéricas
         long id;
@@ -55,6 +65,7 @@ import java.time.format.DateTimeParseException;
         } catch (NumberFormatException e) {
             return new Response("El ID debe ser un número válido.", Status.BAD_REQUEST);
         }
+        
 
         if (!isUpdate && repo.getPassenger(id) != null) {
             return new Response("Ya existe un pasajero con ese ID.", Status.BAD_REQUEST);

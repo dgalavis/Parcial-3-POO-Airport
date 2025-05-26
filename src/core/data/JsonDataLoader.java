@@ -56,10 +56,10 @@ public class JsonDataLoader {
                 storage.getLocationRepository().addLocation(loc);
             }
 
-            System.out.println("✅ Locations cargados correctamente.");
+            System.out.println("Locations cargados correctamente.");
 
         } catch (Exception e) {
-            System.out.println("❌ Error al cargar locations: " + e.getMessage());
+            System.out.println("Error al cargar locations: " + e.getMessage());
         }
      
         
@@ -82,9 +82,9 @@ public class JsonDataLoader {
             storage.getPlaneRepo().addPlane(plane);
         }
 
-        System.out.println("✅ Planes cargados correctamente.");
+        System.out.println("Planes cargados correctamente.");
     } catch (Exception e) {
-        System.out.println("❌ Error al cargar planes: " + e.getMessage());
+        System.out.println("Error al cargar planes: " + e.getMessage());
     }
 }
 
@@ -108,9 +108,9 @@ public class JsonDataLoader {
             storage.getPassengerRepo().addPassenger(p);
         }
 
-        System.out.println("✅ Pasajeros cargados correctamente.");
+        System.out.println("Pasajeros cargados correctamente.");
     } catch (Exception e) {
-        System.out.println("❌ Error al cargar pasajeros: " + e.getMessage());
+        System.out.println("Error al cargar pasajeros: " + e.getMessage());
     }
 }
 
@@ -159,9 +159,9 @@ public class JsonDataLoader {
                 storage.getFlightRepository().addFlight(flight);
             }
 
-            System.out.println("✅ Vuelos cargados correctamente.");
+            System.out.println("Vuelos cargados correctamente.");
         } catch (Exception e) {
-            System.out.println("❌ Error al cargar vuelos: " + e.getMessage());
+            System.out.println("Error al cargar vuelos: " + e.getMessage());
         }
     }
 

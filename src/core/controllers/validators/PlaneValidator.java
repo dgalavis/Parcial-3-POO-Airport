@@ -42,6 +42,14 @@ public class PlaneValidator {
         } catch (NumberFormatException e) {
             return new Response("La capacidad debe ser un número válido.", Status.BAD_REQUEST);
         }
+        
+        if (!brand.matches("[\\p{L} ]+")) {
+            return new Response("El nombre de la marca solo puede contener letras.", Status.BAD_REQUEST);
+        }
+        
+        if (!model.matches("[\\p{L} ]+")) {
+            return new Response("El nombre del modelo solo puede contener letras.", Status.BAD_REQUEST);
+        }
 
         // 5. Crear objeto Plane si todo es válido
         Plane plane = new Plane(id, brand, model, capacity, airline);
@@ -51,6 +59,7 @@ public class PlaneValidator {
         private static boolean isNullOrEmpty(String s) {
             return s == null || s.trim().isEmpty();
         }
+        
 
         private static boolean isValidPlaneId(String id) {
             if (id == null || id.length() != 7) return false;
