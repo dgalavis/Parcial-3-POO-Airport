@@ -50,6 +50,10 @@ public class PlaneValidator {
         if (!model.matches("[\\p{L} ]+")) {
             return new Response("El nombre del modelo solo puede contener letras.", Status.BAD_REQUEST);
         }
+        
+        if (!airline.matches("[\\p{L} ]+")) {
+            return new Response("El nombre de la aerolínea solo puede contener letras.", Status.BAD_REQUEST);
+        }
 
         // 5. Crear objeto Plane si todo es válido
         Plane plane = new Plane(id, brand, model, capacity, airline);
